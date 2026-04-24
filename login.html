@@ -20,11 +20,13 @@
   </a>
 
   <nav class="desktop-nav">
+    <a href="index.html">Home</a>
     <a href="virtual-cards.html">Virtual Cards</a>
     <a href="physical-cards.html">Physical Cards</a>
     <a href="api-access.html">API Access</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <div class="nav-btns">
@@ -38,11 +40,13 @@
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
   <a href="virtual-cards.html">Virtual Cards</a>
   <a href="physical-cards.html">Physical Cards</a>
   <a href="api-access.html">API Access</a>
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
   <a href="login.html">Log in</a>
   <a href="signup.html" class="mobile-signup">Sign up</a>
 </div>
@@ -57,7 +61,8 @@
     </h1>
 
     <p>
-      Enter the same email and password you used during signup.
+      Enter the same email and password you used during signup. After login,
+      choose your card plan or continue to your dashboard.
     </p>
   </section>
 
@@ -67,7 +72,7 @@
     <form class="feature-card" id="loginForm" style="width:min(430px,100%); position:relative; z-index:2;">
       <i class="fa-solid fa-user-lock"></i>
       <h3>Log In</h3>
-      <p>Access your dashboard securely.</p>
+      <p>Access your NexPay account securely.</p>
 
       <input id="email" type="email" placeholder="Email address" required
         style="width:100%; margin-top:20px; padding:16px; border-radius:16px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.35); color:#fff; outline:none;">
@@ -96,7 +101,7 @@
 </main>
 
 <footer>
-  <p>© 2026 NexPay. Demo crypto card website.</p>
+  <p>© 2026 NexPay. All rights reserved.</p>
 </footer>
 
 <script>
@@ -118,7 +123,6 @@ loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const savedUser = JSON.parse(localStorage.getItem("nexpay_user"));
-
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
 
@@ -129,12 +133,20 @@ loginForm.addEventListener("submit", (e) => {
 
   if (savedUser.email === email && savedUser.password === password) {
     localStorage.setItem("isLoggedIn", "true");
+
     loginMsg.style.display = "block";
     errorMsg.style.display = "none";
 
     setTimeout(() => {
-      window.location.href = "dashboard.html";
-    }, 900);
+      const selectedPlan = localStorage.getItem("selected_plan");
+
+      if (selectedPlan) {
+        window.location.href = "dashboard.html";
+      } else {
+        window.location.href = "pricing.html";
+      }
+    }, 800);
+
   } else {
     errorMsg.style.display = "block";
     loginMsg.style.display = "none";
