@@ -1,86 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NexPay | Developers</title>
-
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<style>
-.page-wrap{
-  max-width:1000px;
-  margin:auto;
-  padding:120px 20px 60px;
-}
-
-.page-wrap h1{
-  font-size:42px;
-  margin-bottom:15px;
-}
-
-.page-wrap p{
-  color:rgba(255,255,255,.6);
-  margin-bottom:30px;
-}
-
-.dev-card{
-  padding:24px;
-  border-radius:18px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.12);
-  margin-bottom:18px;
-}
-
-.dev-card i{
-  font-size:22px;
-  color:#d8b45d;
-  margin-bottom:10px;
-}
-</style>
 </head>
-
 <body>
 
 <header class="nav">
-  <a class="logo" href="index.html">
-    <div class="logo-icon">⚡</div>
-    <div>
-      <h2>NexPay</h2>
-      <p>Crypto Cards</p>
-    </div>
-  </a>
+  <a class="logo" href="index.html"><div class="logo-icon">⚡</div><div><h2>NexPay</h2><p>Crypto Cards</p></div></a>
+  <nav class="desktop-nav">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+  </nav>
+  <div class="nav-btns"><a href="login.html" class="login">Log in</a><a href="signup.html" class="signup">Sign up</a></div>
+  <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
 </header>
 
-<div class="page-wrap">
-
-<h1>Developer API</h1>
-<p>Integrate NexPay into your platform using our API system.</p>
-
-<div class="dev-card">
-  <i class="fa-solid fa-key"></i>
-  <h3>API Access</h3>
-  <p>Request API keys via contact page. Access is granted after approval.</p>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a><a href="developers.html">Developers</a><a href="docs.html">Docs</a><a href="login.html">Log in</a><a href="signup.html" class="mobile-signup">Sign up</a>
 </div>
 
-<div class="dev-card">
-  <i class="fa-solid fa-code"></i>
-  <h3>Card Issuing API</h3>
-  <p>Create virtual cards, manage limits and monitor usage.</p>
-</div>
+<section class="features" style="padding-top:140px;">
+  <h2>Developers</h2>
+  <p>Build card products, payment workflows and account experiences with NexPay developer access.</p>
 
-<div class="dev-card">
-  <i class="fa-solid fa-bell"></i>
-  <h3>Webhooks</h3>
-  <p>Get real-time events for transactions, card status and funding.</p>
-</div>
+  <div class="feature-grid">
+    <div class="feature-card"><i class="fa-solid fa-key"></i><h3>API Access</h3><p>Request API keys and sandbox access through the contact page after business review.</p></div>
+    <div class="feature-card"><i class="fa-solid fa-credit-card"></i><h3>Card Issuing</h3><p>Create card request workflows, manage limits and connect user card experiences.</p></div>
+    <div class="feature-card"><i class="fa-solid fa-bell"></i><h3>Webhooks</h3><p>Receive event updates for transactions, card status, account actions and funding flows.</p></div>
+    <div class="feature-card"><i class="fa-solid fa-lock"></i><h3>Secure Auth</h3><p>Use secure access patterns and approved credentials for private business integrations.</p></div>
+    <div class="feature-card"><i class="fa-solid fa-code"></i><h3>Clean Endpoints</h3><p>Design card issuing, card controls, funding and transaction tracking with simple API endpoints.</p></div>
+    <div class="feature-card"><i class="fa-solid fa-headset"></i><h3>Partner Support</h3><p>Approved developers can receive onboarding support and integration guidance.</p></div>
+  </div>
 
-</div>
+  <div class="hero-actions" style="justify-content:center;">
+    <a href="api-access.html" class="primary-btn">View API Access <i class="fa-solid fa-arrow-right"></i></a>
+    <a href="contact.html" class="secondary-btn">Request Access <i class="fa-solid fa-key"></i></a>
+  </div>
+</section>
 
-<footer style="text-align:center;padding:30px;color:#777;border-top:1px solid #222">
-© 2026 NexPay. All rights reserved.
+<footer class="luxury-footer">
+  <div class="footer-wrap">
+    <div class="footer-brand"><a class="logo footer-logo" href="index.html"><div class="logo-icon">⚡</div><div><h2>NexPay</h2><p>Crypto Cards</p></div></a><p>NexPay is a premium digital finance platform for virtual cards, crypto-powered spending, business payments and global online transactions.</p></div>
+    <div class="footer-col"><h4>Platform</h4><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="pricing.html">Pricing</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a><a href="careers.html">Careers</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="faq.html">FAQ</a><a href="help-center.html">Help Center</a><a href="live-status.html">Live Status</a><a href="security.html">Security</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="terms.html">Terms</a><a href="privacy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="risk-disclosure.html">Risk Disclosure</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 NexPay. All rights reserved.</p><p>Premium crypto-card experience for the next generation of digital payments.</p></div>
 </footer>
 
+<script>
+const menuToggle=document.getElementById("menuToggle"),mobileMenu=document.getElementById("mobileMenu");
+menuToggle.addEventListener("click",()=>{mobileMenu.classList.toggle("active");const icon=menuToggle.querySelector("i");icon.classList.toggle("fa-bars");icon.classList.toggle("fa-xmark");});
+</script>
 </body>
 </html>
