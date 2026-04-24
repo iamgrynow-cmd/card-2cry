@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>NexPay | Contact Us</title>
 <meta name="description" content="Contact NexPay for API access, crypto card support, business partnerships and general inquiries.">
 
@@ -16,19 +15,18 @@
 <header class="nav">
   <a class="logo" href="index.html">
     <div class="logo-icon">⚡</div>
-    <div>
-      <h2>NexPay</h2>
-      <p>Crypto Cards</p>
-    </div>
+    <div><h2>NexPay</h2><p>Crypto Cards</p></div>
   </a>
 
   <nav class="desktop-nav">
-    <a href="about.html">About Us</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
     <a href="virtual-cards.html">Virtual Cards</a>
     <a href="physical-cards.html">Physical Cards</a>
-    <a href="api-access.html">API Access</a>
+    <a href="api-access.html">API</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <div class="nav-btns">
@@ -36,27 +34,25 @@
     <a href="signup.html" class="signup">Sign up</a>
   </div>
 
-  <button class="menu-toggle" id="menuToggle">
-    <i class="fa-solid fa-bars"></i>
-  </button>
+  <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="about.html">About Us</a>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
   <a href="virtual-cards.html">Virtual Cards</a>
   <a href="physical-cards.html">Physical Cards</a>
   <a href="api-access.html">API Access</a>
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
   <a href="login.html">Log in</a>
   <a href="signup.html" class="mobile-signup">Sign up</a>
 </div>
 
 <main class="hero">
   <section class="hero-left">
-    <div class="badge">
-      <span></span> Contact NexPay
-    </div>
+    <div class="badge"><span></span> Contact NexPay</div>
 
     <h1>
       Let’s build the future of <br>
@@ -69,50 +65,28 @@
     </p>
 
     <div class="stats">
-      <div>
-        <h3>API</h3>
-        <p>Access requests</p>
-      </div>
-      <div>
-        <h3>Business</h3>
-        <p>Partnerships</p>
-      </div>
-      <div>
-        <h3>Support</h3>
-        <p>User help</p>
-      </div>
+      <div><h3>API</h3><p>Access requests</p></div>
+      <div><h3>Business</h3><p>Partnerships</p></div>
+      <div><h3>Support</h3><p>User help</p></div>
     </div>
   </section>
 
   <section class="hero-right">
     <div class="glow"></div>
 
-    <form class="feature-card" id="contactForm" style="width:min(500px, 100%); position:relative; z-index:2;">
+    <form class="feature-card" id="contactForm" style="width:min(500px,100%);position:relative;z-index:2;">
       <i class="fa-solid fa-headset"></i>
       <h3>Send Message</h3>
       <p>Tell us what you need. This form saves locally in demo mode.</p>
 
-      <input
-        type="text"
-        id="name"
-        placeholder="Full name"
-        required
-        style="width:100%; margin-top:20px; padding:16px; border-radius:16px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.35); color:#fff; outline:none;"
-      />
+      <input type="text" id="name" placeholder="Full name" required
+      style="width:100%;margin-top:20px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;">
 
-      <input
-        type="email"
-        id="email"
-        placeholder="Email address"
-        required
-        style="width:100%; margin-top:14px; padding:16px; border-radius:16px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.35); color:#fff; outline:none;"
-      />
+      <input type="email" id="email" placeholder="Email address" required
+      style="width:100%;margin-top:14px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;">
 
-      <select
-        id="topic"
-        required
-        style="width:100%; margin-top:14px; padding:16px; border-radius:16px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.35); color:#fff; outline:none;"
-      >
+      <select id="topic" required
+      style="width:100%;margin-top:14px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;">
         <option value="">Select inquiry type</option>
         <option>API Access</option>
         <option>Business Partnership</option>
@@ -122,19 +96,14 @@
         <option>Other</option>
       </select>
 
-      <textarea
-        id="message"
-        placeholder="Write your message"
-        rows="5"
-        required
-        style="width:100%; margin-top:14px; padding:16px; border-radius:16px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.35); color:#fff; outline:none; resize:none;"
-      ></textarea>
+      <textarea id="message" placeholder="Write your message" rows="5" required
+      style="width:100%;margin-top:14px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;resize:none;"></textarea>
 
-      <button type="submit" class="primary-btn" style="width:100%; margin-top:18px;">
+      <button type="submit" class="primary-btn" style="width:100%;margin-top:18px;">
         Send Message <i class="fa-solid fa-arrow-right"></i>
       </button>
 
-      <p id="contactMsg" style="display:none; margin-top:16px; padding:14px; border-radius:16px; background:rgba(66,232,155,.12); color:#42e89b;">
+      <p id="contactMsg" style="display:none;margin-top:16px;padding:14px;border-radius:16px;background:rgba(66,232,155,.12);color:#42e89b;">
         Message saved successfully ✅
       </p>
     </form>
@@ -146,85 +115,47 @@
   <p>Choose the right path based on your NexPay requirement.</p>
 
   <div class="feature-grid">
-    <div class="feature-card">
-      <i class="fa-solid fa-code"></i>
-      <h3>API Access</h3>
-      <p>Request business or developer access for virtual card workflows.</p>
-    </div>
-
-    <div class="feature-card">
-      <i class="fa-solid fa-handshake"></i>
-      <h3>Partnerships</h3>
-      <p>Discuss card issuing, crypto funding, compliance or business integrations.</p>
-    </div>
-
-    <div class="feature-card">
-      <i class="fa-solid fa-life-ring"></i>
-      <h3>Support</h3>
-      <p>Need help with account, plan selection, waitlist or dashboard access.</p>
-    </div>
+    <div class="feature-card"><i class="fa-solid fa-code"></i><h3>API Access</h3><p>Request business or developer access for virtual card workflows.</p></div>
+    <div class="feature-card"><i class="fa-solid fa-handshake"></i><h3>Partnerships</h3><p>Discuss card issuing, crypto funding, compliance or business integrations.</p></div>
+    <div class="feature-card"><i class="fa-solid fa-life-ring"></i><h3>Support</h3><p>Need help with account, plan selection, waitlist or dashboard access.</p></div>
   </div>
 </section>
 
-<section class="features">
-  <h2>Business Inquiries</h2>
-  <p>For agencies, fintech teams and high-volume digital spenders.</p>
-
-  <div class="feature-grid">
-    <div class="feature-card">
-      <i class="fa-solid fa-bullhorn"></i>
-      <h3>Marketing Agencies</h3>
-      <p>Cards for ad accounts, campaign spending and client-based payments.</p>
+<footer class="luxury-footer">
+  <div class="footer-wrap">
+    <div class="footer-brand">
+      <a class="logo footer-logo" href="index.html"><div class="logo-icon">⚡</div><div><h2>NexPay</h2><p>Crypto Cards</p></div></a>
+      <p>NexPay is a premium digital finance platform for virtual cards, crypto-powered spending, business payments and global online transactions.</p>
     </div>
-
-    <div class="feature-card">
-      <i class="fa-solid fa-building"></i>
-      <h3>Business Cards</h3>
-      <p>Custom card access for teams, operations and recurring payments.</p>
-    </div>
-
-    <div class="feature-card">
-      <i class="fa-solid fa-shield-halved"></i>
-      <h3>Compliance Review</h3>
-      <p>Real card access requires eligibility, verification and partner approval.</p>
-    </div>
+    <div class="footer-col"><h4>Platform</h4><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="pricing.html">Pricing</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a><a href="careers.html">Careers</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="faq.html">FAQ</a><a href="help-center.html">Help Center</a><a href="live-status.html">Live Status</a><a href="security.html">Security</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="terms.html">Terms</a><a href="privacy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="risk-disclosure.html">Risk Disclosure</a></div>
   </div>
-</section>
-
-<footer>
-  <p>© 2026 NexPay. Demo crypto card website.</p>
+  <div class="footer-bottom"><p>© 2026 NexPay. All rights reserved.</p><p>Premium crypto-card experience for the next generation of digital payments.</p></div>
 </footer>
 
 <script>
-const menuToggle = document.getElementById("menuToggle");
-const mobileMenu = document.getElementById("mobileMenu");
+const menuToggle=document.getElementById("menuToggle");
+const mobileMenu=document.getElementById("mobileMenu");
+menuToggle.addEventListener("click",()=>{mobileMenu.classList.toggle("active");const icon=menuToggle.querySelector("i");icon.classList.toggle("fa-bars");icon.classList.toggle("fa-xmark");});
 
-menuToggle.addEventListener("click", () => {
-  mobileMenu.classList.toggle("active");
-  const icon = menuToggle.querySelector("i");
-  icon.classList.toggle("fa-bars");
-  icon.classList.toggle("fa-xmark");
-});
+const contactForm=document.getElementById("contactForm");
+const contactMsg=document.getElementById("contactMsg");
 
-const contactForm = document.getElementById("contactForm");
-const contactMsg = document.getElementById("contactMsg");
-
-contactForm.addEventListener("submit", (e) => {
+contactForm.addEventListener("submit",(e)=>{
   e.preventDefault();
-
-  const entry = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    topic: document.getElementById("topic").value,
-    message: document.getElementById("message").value,
-    createdAt: new Date().toISOString()
+  const entry={
+    name:document.getElementById("name").value,
+    email:document.getElementById("email").value,
+    topic:document.getElementById("topic").value,
+    message:document.getElementById("message").value,
+    createdAt:new Date().toISOString()
   };
-
-  const messages = JSON.parse(localStorage.getItem("nexpay_contact_messages") || "[]");
+  const messages=JSON.parse(localStorage.getItem("nexpay_contact_messages")||"[]");
   messages.push(entry);
-  localStorage.setItem("nexpay_contact_messages", JSON.stringify(messages));
-
-  contactMsg.style.display = "block";
+  localStorage.setItem("nexpay_contact_messages",JSON.stringify(messages));
+  contactMsg.style.display="block";
   contactForm.reset();
 });
 </script>
