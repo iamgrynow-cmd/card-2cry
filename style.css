@@ -29,7 +29,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(5, 6, 10, .75);
+  background: rgba(5, 6, 10, .78);
   backdrop-filter: blur(22px);
   border-bottom: 1px solid rgba(255,255,255,.1);
   position: fixed;
@@ -53,11 +53,13 @@ a {
   display: grid;
   place-items: center;
   font-weight: 900;
+  flex-shrink: 0;
 }
 
 .logo h2 {
   font-family: "Plus Jakarta Sans";
   font-size: 22px;
+  line-height: 1;
 }
 
 .logo p {
@@ -65,15 +67,23 @@ a {
   letter-spacing: 3px;
   color: rgba(255,255,255,.45);
   text-transform: uppercase;
+  margin-top: 4px;
 }
 
 nav,
 .desktop-nav {
   display: flex;
-  gap: 26px;
+  align-items: center;
+  gap: 24px;
   color: rgba(255,255,255,.7);
   font-size: 14px;
   font-weight: 700;
+}
+
+nav a,
+.desktop-nav a {
+  transition: .2s ease;
+  white-space: nowrap;
 }
 
 nav a:hover,
@@ -81,26 +91,46 @@ nav a:hover,
   color: #d8b45d;
 }
 
+/* NAV BUTTONS FIX */
 .nav-btns {
   display: flex;
-  gap: 12px;
+  align-items: center;
+  gap: 10px;
 }
 
 .login,
 .signup {
-  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 0 18px;
   border-radius: 999px;
   font-weight: 800;
+  font-size: 14px;
+  white-space: nowrap;
+  line-height: 1;
+  transition: .2s ease;
 }
 
 .login {
   border: 1px solid rgba(255,255,255,.16);
   background: rgba(255,255,255,.07);
+  color: #fff;
+}
+
+.login:hover {
+  background: rgba(255,255,255,.12);
 }
 
 .signup {
   background: linear-gradient(135deg, #fff0b0, #d8b45d, #9b6d20);
   color: #05060a;
+  box-shadow: 0 0 40px rgba(216,180,93,.18);
+}
+
+.signup:hover {
+  transform: translateY(-1px);
 }
 
 /* MOBILE MENU */
@@ -223,6 +253,15 @@ nav a:hover,
   gap: 10px;
   align-items: center;
   justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: .2s ease;
+  font-size: 15px;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+  transform: translateY(-2px);
 }
 
 .primary-btn {
@@ -234,6 +273,7 @@ nav a:hover,
 .secondary-btn {
   background: rgba(255,255,255,.08);
   border: 1px solid rgba(255,255,255,.14);
+  color: #fff;
 }
 
 .stats {
@@ -384,6 +424,19 @@ nav a:hover,
   line-height: 1.7;
 }
 
+/* FORM ELEMENTS */
+input,
+select,
+textarea,
+button {
+  font-family: Inter, sans-serif;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255,255,255,.45);
+}
+
 /* FOOTER */
 footer {
   text-align: center;
@@ -393,6 +446,20 @@ footer {
 }
 
 /* TABLET */
+@media (max-width: 1100px) {
+  .desktop-nav {
+    gap: 16px;
+    font-size: 13px;
+  }
+
+  .login,
+  .signup {
+    height: 40px;
+    padding: 0 15px;
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 1024px) {
   .hero {
     grid-template-columns: 1fr;
@@ -419,7 +486,7 @@ footer {
   }
 }
 
-/* MOBILE */
+/* MOBILE NAV */
 @media (max-width: 900px) {
   .desktop-nav,
   .nav-btns {
@@ -432,6 +499,7 @@ footer {
   }
 }
 
+/* MOBILE */
 @media (max-width: 768px) {
   .nav {
     padding: 0 5%;
