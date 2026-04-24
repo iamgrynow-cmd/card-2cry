@@ -1,7 +1,54 @@
-<h1>NexPay Blog</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexPay | Blog</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
 
-<ul>
-  <li>Why virtual cards are trending</li>
-  <li>Crypto payment future</li>
-  <li>Online payment security tips</li>
-</ul>
+<header class="nav">
+  <a class="logo" href="index.html"><div class="logo-icon">⚡</div><div><h2>NexPay</h2><p>Crypto Cards</p></div></a>
+  <nav class="desktop-nav">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+  </nav>
+  <div class="nav-btns"><a href="login.html" class="login">Log in</a><a href="signup.html" class="signup">Sign up</a></div>
+  <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a><a href="login.html">Log in</a><a href="signup.html" class="mobile-signup">Sign up</a>
+</div>
+
+<section class="features" style="padding-top:140px;">
+  <h2>NexPay Blog</h2>
+  <p>Insights about virtual cards, crypto payments, business spending and secure online transactions.</p>
+
+  <div class="feature-grid">
+    <div class="feature-card"><i class="fa-solid fa-newspaper"></i><h3>Why Virtual Cards Are Growing</h3><p>Virtual cards help users separate online payments, manage subscriptions and reduce risk.</p></div>
+    <div class="feature-card"><i class="fa-solid fa-credit-card"></i><h3>Crypto Card Spending</h3><p>Crypto-funded card experiences can connect digital assets with practical payment use cases.</p></div>
+    <div class="feature-card"><i class="fa-solid fa-shield-halved"></i><h3>Payment Security Tips</h3><p>Use card limits, separate cards and secure login habits to protect your online spending.</p></div>
+    <div class="feature-card"><i class="fa-solid fa-bullhorn"></i><h3>Cards For Ads & Marketing</h3><p>Agencies can separate card usage by campaign, client and ad account for better control.</p></div>
+    <div class="feature-card"><i class="fa-solid fa-code"></i><h3>API Card Workflows</h3><p>Businesses can use card APIs to automate issuing, controls and transaction monitoring.</p></div>
+    <div class="feature-card"><i class="fa-solid fa-globe"></i><h3>Global Digital Payments</h3><p>Modern users need flexible card tools for SaaS, shopping, travel and global services.</p></div>
+  </div>
+</section>
+
+<footer class="luxury-footer">
+  <div class="footer-wrap">
+    <div class="footer-brand"><a class="logo footer-logo" href="index.html"><div class="logo-icon">⚡</div><div><h2>NexPay</h2><p>Crypto Cards</p></div></a><p>NexPay is a premium digital finance platform for virtual cards, crypto-powered spending, business payments and global online transactions.</p></div>
+    <div class="footer-col"><h4>Platform</h4><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="pricing.html">Pricing</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a><a href="careers.html">Careers</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="faq.html">FAQ</a><a href="help-center.html">Help Center</a><a href="live-status.html">Live Status</a><a href="security.html">Security</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="terms.html">Terms</a><a href="privacy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="risk-disclosure.html">Risk Disclosure</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 NexPay. All rights reserved.</p><p>Premium crypto-card experience for the next generation of digital payments.</p></div>
+</footer>
+
+<script>
+const menuToggle=document.getElementById("menuToggle"),mobileMenu=document.getElementById("mobileMenu");
+menuToggle.addEventListener("click",()=>{mobileMenu.classList.toggle("active");const icon=menuToggle.querySelector("i");icon.classList.toggle("fa-bars");icon.classList.toggle("fa-xmark");});
+</script>
+</body>
+</html>
