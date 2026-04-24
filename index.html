@@ -19,7 +19,7 @@
       </div>
     </a>
 
-    <nav>
+    <nav class="desktop-nav">
       <a href="virtual-cards.html">Virtual Cards</a>
       <a href="physical-cards.html">Physical Cards</a>
       <a href="api-access.html">API Access</a>
@@ -31,7 +31,21 @@
       <a href="login.html" class="login">Log in</a>
       <a href="signup.html" class="signup">Sign up</a>
     </div>
+
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fa-solid fa-bars"></i>
+    </button>
   </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="virtual-cards.html">Virtual Cards</a>
+    <a href="physical-cards.html">Physical Cards</a>
+    <a href="api-access.html">API Access</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="login.html">Log in</a>
+    <a href="signup.html" class="mobile-signup">Sign up</a>
+  </div>
 
   <main class="hero">
     <section class="hero-left">
@@ -251,5 +265,18 @@
   <footer>
     <p>© 2026 NexPay. Demo crypto card website.</p>
   </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("active");
+
+      const icon = menuToggle.querySelector("i");
+      icon.classList.toggle("fa-bars");
+      icon.classList.toggle("fa-xmark");
+    });
+  </script>
 </body>
 </html>
