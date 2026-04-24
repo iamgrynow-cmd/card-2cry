@@ -1,102 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NexPay | Crypto Cards</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexPay | Crypto Cards</title>
 
-<!-- Tailwind CDN FIX -->
-<script src="https://cdn.tailwindcss.com"></script>
-
-<style>
-body {
-  background: #0a0a0a;
-  color: white;
-}
-</style>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 
 <body>
-
-<!-- NAVBAR -->
-<div class="flex justify-between items-center p-5 border-b border-gray-800">
-  <h1 class="text-xl font-bold">⚡ NexPay</h1>
-
-  <div class="space-x-4 text-sm">
-    <a href="#" class="hover:text-yellow-400">Virtual Cards</a>
-    <a href="#" class="hover:text-yellow-400">Physical Cards</a>
-    <a href="#" class="hover:text-yellow-400">API</a>
-    <a href="#" class="hover:text-yellow-400">Pricing</a>
-    <a href="#" class="hover:text-yellow-400">FAQ</a>
-  </div>
-
-  <div class="space-x-2">
-    <a href="login.html" class="px-4 py-2 border border-gray-600 rounded">Login</a>
-    <a href="signup.html" class="px-4 py-2 bg-yellow-400 text-black rounded font-bold">Sign Up</a>
-  </div>
-</div>
-
-<!-- HERO -->
-<div class="text-center py-20 px-5">
-  <h1 class="text-5xl font-bold mb-6">
-    Create a secure <br>
-    <span class="text-yellow-400">crypto card</span>
-  </h1>
-
-  <p class="text-gray-400 max-w-2xl mx-auto mb-8">
-    Fund your card with crypto, manage spending from one dashboard,
-    and create virtual cards for online payments.
-  </p>
-
-  <div class="space-x-4">
-    <a href="signup.html" class="bg-yellow-400 text-black px-6 py-3 rounded font-bold">
-      Create Account
+  <header class="nav">
+    <a class="logo" href="index.html">
+      <div class="logo-icon">⚡</div>
+      <div>
+        <h2>NexPay</h2>
+        <p>Crypto Cards</p>
+      </div>
     </a>
-    <a href="#" class="border px-6 py-3 rounded">
-      Explore Cards
-    </a>
-  </div>
-</div>
 
-<!-- FEATURES -->
-<div class="grid md:grid-cols-3 gap-6 p-10">
+    <nav>
+      <a href="virtual-cards.html">Virtual Cards</a>
+      <a href="physical-cards.html">Physical Cards</a>
+      <a href="api-access.html">API Access</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
 
-  <div class="border border-gray-800 p-6 rounded">
-    <h3 class="text-xl font-bold mb-2">Virtual Cards</h3>
-    <p class="text-gray-400">Create instant cards for online payments.</p>
-  </div>
-
-  <div class="border border-gray-800 p-6 rounded">
-    <h3 class="text-xl font-bold mb-2">Crypto Funded</h3>
-    <p class="text-gray-400">Spend crypto like real money.</p>
-  </div>
-
-  <div class="border border-gray-800 p-6 rounded">
-    <h3 class="text-xl font-bold mb-2">API Access</h3>
-    <p class="text-gray-400">Build your own card system.</p>
-  </div>
-
-</div>
-
-<!-- CARD UI -->
-<div class="flex justify-center py-16">
-  <div class="bg-black border border-gray-700 rounded-xl p-8 w-96">
-    <h2 class="text-xl font-bold">NexPay Elite</h2>
-    <p class="text-gray-500 text-sm mb-6">Virtual Card</p>
-
-    <p class="text-2xl tracking-widest mb-6">•••• 8294 7710</p>
-
-    <div class="flex justify-between">
-      <span>NEXPAY USER</span>
-      <span class="text-green-400">ACTIVE</span>
+    <div class="nav-btns">
+      <a href="login.html" class="login">Log in</a>
+      <a href="signup.html" class="signup">Sign up</a>
     </div>
-  </div>
-</div>
+  </header>
 
-<!-- FOOTER -->
-<div class="text-center text-gray-500 py-10 border-t border-gray-800">
-  © 2026 NexPay | Demo Crypto Card Project
-</div>
+  <main class="hero">
+    <section class="hero-left">
+      <div class="badge">
+        <span></span> Crypto funded cards for global spending
+      </div>
 
+      <h1>
+        Create a secure <br />
+        <strong>crypto card.</strong>
+      </h1>
+
+      <p>
+        Fund your card with crypto, manage spending from one dashboard,
+        and create premium virtual cards for online payments, subscriptions,
+        ads and business expenses.
+      </p>
+
+      <div class="hero-actions">
+        <a href="signup.html" class="primary-btn">Create Account <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="virtual-cards.html" class="secondary-btn">Explore Cards <i class="fa-solid fa-credit-card"></i></a>
+      </div>
+
+      <div class="stats">
+        <div>
+          <h3>Instant</h3>
+          <p>Virtual card demo</p>
+        </div>
+        <div>
+          <h3>Global</h3>
+          <p>Spend vision</p>
+        </div>
+        <div>
+          <h3>API</h3>
+          <p>Business access</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-right">
+      <div class="glow"></div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <h2>NexPay</h2>
+            <p>Elite Black</p>
+          </div>
+          <div class="chip"></div>
+        </div>
+
+        <div class="card-number">•••• 8294 7710</div>
+
+        <div class="card-bottom">
+          <div>
+            <small>Card Holder</small>
+            <h4>NEXPAY USER</h4>
+          </div>
+          <div>
+            <small>Status</small>
+            <h4 class="active">ACTIVE</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="features">
+    <h2>Premium crypto-card platform</h2>
+    <p>Everything you need to present a serious fintech product.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <i class="fa-solid fa-credit-card"></i>
+        <h3>Virtual Cards</h3>
+        <p>Create online cards for payments, subscriptions and ads.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-wallet"></i>
+        <h3>Crypto Funded</h3>
+        <p>Position your product around crypto-to-card spending.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3>Secure Controls</h3>
+        <p>Freeze cards, manage limits and monitor card activity.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 NexPay. Demo crypto card website.</p>
+  </footer>
 </body>
 </html>
