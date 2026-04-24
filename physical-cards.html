@@ -1,1 +1,441 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexPay | Physical Cards</title><meta name="description" content="Physical Cards"><script src="https://cdn.tailwindcss.com"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><link rel="stylesheet" href="assets/css/style.css"></head><body class="premium-bg noise"><header class="nav"><div class="container nav-inner"><a class="brand" href="index.html"><div class="brand-icon gold-gradient shadow-glow"><i class="fa-solid fa-bolt"></i></div><div><div class="brand-title">NexPay</div><div class="brand-sub">Crypto Cards</div></div></a><nav class="nav-links"><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="live-status.html">Live Status</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a></nav><div class="nav-actions"><a class="btn btn-glass" href="login.html">Log in</a><a class="btn btn-gold shadow-glow" href="signup.html">Sign up</a></div><button id="menuBtn" class="menu-btn"><i class="fa-solid fa-bars"></i></button></div><div id="mobileMenu" class="mobile-menu"><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="live-status.html">Live Status</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="login.html">Log in</a><a href="signup.html">Sign up</a></div></header><main><section class="page-hero"><div class="container"><p class="eyebrow">Physical Cards</p><h1 class="h1">Premium physical card experience.</h1><p class="lead">Show a future physical card rollout for elite users who want a premium spending product.</p></div></section><section class="section"><div class="container grid-2"><div class="panel glass shadow-card"><div class="icon gold-gradient"><i class="fa-solid fa-id-card"></i></div><h2 class="h2">Built for premium users.</h2><p class="muted">Use this page to explain the product clearly and push users toward signup.</p><a class="btn btn-gold shadow-glow" href="signup.html">Get Started <i class="fa-solid fa-arrow-right"></i></a></div><div class="panel glass"><div class="list"><div class="list-item"><i class="fa-solid fa-check text-gold"></i><span>Elite black card design</span></div><div class="list-item"><i class="fa-solid fa-check text-gold"></i><span>Shipping status concept</span></div><div class="list-item"><i class="fa-solid fa-check text-gold"></i><span>Global travel positioning</span></div><div class="list-item"><i class="fa-solid fa-check text-gold"></i><span>Premium member experience</span></div></div></div></div></section></main><footer class="footer"><div class="container footer-grid"><div><a class="brand" href="index.html"><div class="brand-icon gold-gradient"><i class="fa-solid fa-bolt"></i></div><div><div class="brand-title">NexPay</div><div class="brand-sub">Crypto Cards</div></div></a><p class="muted">Demo crypto card website for market validation. Not a bank, issuer, custodian, or licensed financial provider.</p></div><div><h3>Platform</h3><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="dashboard.html">Dashboard</a><a href="pricing.html">Pricing</a></div><div><h3>Support</h3><a href="faq.html">FAQ</a><a href="help-center.html">Help Center</a><a href="live-status.html">Live Status</a><a href="contact.html">Contact</a><a href="about.html">About</a></div><div><h3>Legal</h3><a href="terms.html">Terms</a><a href="privacy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="compliance.html">Compliance</a><a href="risk-disclosure.html">Risk Disclosure</a><a href="security.html">Security</a><p class="muted">© <span id="year"></span> NexPay</p></div></div></footer><script src="assets/js/main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NexPay | Physical Cards Coming Soon</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+.physical-hero {
+  min-height: 100vh;
+  padding: 130px 6% 70px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.physical-left h1 {
+  font-family: "Plus Jakarta Sans";
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: .95;
+  letter-spacing: -3px;
+  margin-top: 24px;
+}
+
+.physical-left h1 strong {
+  background: linear-gradient(135deg, #fff0b0, #d8b45d, #9b6d20);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.physical-left p {
+  margin-top: 24px;
+  max-width: 620px;
+  color: rgba(255,255,255,.6);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.coming-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.13);
+  color: rgba(255,255,255,.8);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.coming-badge span {
+  width: 8px;
+  height: 8px;
+  background: #42e89b;
+  border-radius: 50%;
+  box-shadow: 0 0 18px #42e89b;
+}
+
+.card-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 430px;
+}
+
+.physical-glow {
+  position: absolute;
+  width: 430px;
+  height: 430px;
+  background: rgba(216,180,93,.22);
+  filter: blur(110px);
+  border-radius: 50%;
+}
+
+.physical-card {
+  width: min(430px, 92vw);
+  height: 270px;
+  border-radius: 34px;
+  padding: 32px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 22% 18%, rgba(216,180,93,.45), transparent 28%),
+    linear-gradient(135deg, #111, #1c1c1c, #020202);
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 45px 120px rgba(0,0,0,.65);
+  transform: perspective(900px) rotateX(12deg) rotateY(-18deg) rotateZ(6deg);
+  animation: floatCard 4.8s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  0%,100% {
+    transform: perspective(900px) translateY(0) rotateX(12deg) rotateY(-18deg) rotateZ(6deg);
+  }
+  50% {
+    transform: perspective(900px) translateY(-18px) rotateX(12deg) rotateY(-18deg) rotateZ(6deg);
+  }
+}
+
+.physical-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,.16), transparent 60%);
+  transform: translateX(-100%);
+  animation: shine 3.5s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  55% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+.physical-card-content {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pc-top,
+.pc-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pc-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,.45);
+  margin-top: 5px;
+}
+
+.pc-chip {
+  width: 58px;
+  height: 42px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #fff0b0, #d8b45d, #9b6d20);
+}
+
+.pc-number {
+  font-family: monospace;
+  font-size: 24px;
+  letter-spacing: 7px;
+}
+
+.waitlist-section {
+  padding: 80px 6%;
+}
+
+.waitlist-box {
+  max-width: 980px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 30px;
+  padding: 34px;
+  border-radius: 34px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.13);
+  backdrop-filter: blur(18px);
+}
+
+.waitlist-box h2 {
+  font-family: "Plus Jakarta Sans";
+  font-size: 38px;
+  line-height: 1.1;
+}
+
+.waitlist-box p {
+  color: rgba(255,255,255,.58);
+  line-height: 1.7;
+  margin-top: 14px;
+}
+
+.waitlist-form {
+  display: grid;
+  gap: 14px;
+}
+
+.waitlist-form input,
+.waitlist-form select {
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  outline: none;
+}
+
+.waitlist-msg {
+  display: none;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(66,232,155,.12);
+  color: #42e89b;
+}
+
+@media(max-width:900px){
+  .physical-hero,
+  .waitlist-box {
+    grid-template-columns: 1fr;
+  }
+
+  .physical-hero {
+    padding-top: 120px;
+  }
+
+  .physical-left h1 {
+    font-size: 38px;
+    letter-spacing: -1px;
+  }
+
+  .physical-card {
+    height: 230px;
+    padding: 24px;
+    transform: none;
+  }
+
+  .pc-number {
+    font-size: 18px;
+    letter-spacing: 3px;
+  }
+
+  .waitlist-box {
+    padding: 24px;
+  }
+
+  .waitlist-box h2 {
+    font-size: 30px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+  <a class="logo" href="index.html">
+    <div class="logo-icon">⚡</div>
+    <div>
+      <h2>NexPay</h2>
+      <p>Crypto Cards</p>
+    </div>
+  </a>
+
+  <nav class="desktop-nav">
+    <a href="virtual-cards.html">Virtual Cards</a>
+    <a href="physical-cards.html">Physical Cards</a>
+    <a href="api-access.html">API Access</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+
+  <div class="nav-btns">
+    <a href="login.html" class="login">Log in</a>
+    <a href="signup.html" class="signup">Sign up</a>
+  </div>
+
+  <button class="menu-toggle" id="menuToggle">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="virtual-cards.html">Virtual Cards</a>
+  <a href="physical-cards.html">Physical Cards</a>
+  <a href="api-access.html">API Access</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="faq.html">FAQ</a>
+  <a href="login.html">Log in</a>
+  <a href="signup.html" class="mobile-signup">Sign up</a>
+</div>
+
+<main class="physical-hero">
+  <section class="physical-left">
+    <div class="coming-badge">
+      <span></span> Physical cards are coming soon
+    </div>
+
+    <h1>
+      Hold Tight. <br>
+      <strong>Physical Cards</strong> are launching soon.
+    </h1>
+
+    <p>
+      We’re building a premium NexPay physical card experience for real-world spending.
+      Swipe globally, manage limits, and connect your crypto balance to everyday purchases.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#waitlist" class="primary-btn">
+        Join Waitlist <i class="fa-solid fa-arrow-right"></i>
+      </a>
+      <a href="virtual-cards.html" class="secondary-btn">
+        Use Virtual Cards <i class="fa-solid fa-credit-card"></i>
+      </a>
+    </div>
+  </section>
+
+  <section class="card-stage">
+    <div class="physical-glow"></div>
+
+    <div class="physical-card">
+      <div class="physical-card-content">
+        <div class="pc-top">
+          <div>
+            <h2>NexPay</h2>
+            <p class="pc-label">Physical Elite</p>
+          </div>
+          <div class="pc-chip"></div>
+        </div>
+
+        <div>
+          <p class="pc-label">Coming Soon</p>
+          <div class="pc-number">•••• 2026 CARD</div>
+        </div>
+
+        <div class="pc-bottom">
+          <div>
+            <p class="pc-label">Access</p>
+            <h4>WAITLIST</h4>
+          </div>
+          <div style="text-align:right;">
+            <p class="pc-label">Status</p>
+            <h4 style="color:#ffcc66;">SOON</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="features">
+  <h2>What’s Coming</h2>
+  <p>A premium physical card experience built for serious crypto spenders.</p>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <i class="fa-solid fa-globe"></i>
+      <h3>Global Spending</h3>
+      <p>Designed for real-world payments, travel, bookings and daily purchases.</p>
+    </div>
+
+    <div class="feature-card">
+      <i class="fa-solid fa-sliders"></i>
+      <h3>Spending Controls</h3>
+      <p>Manage limits, freeze card and control usage from your dashboard.</p>
+    </div>
+
+    <div class="feature-card">
+      <i class="fa-solid fa-crown"></i>
+      <h3>Elite Design</h3>
+      <p>Luxury black-gold card design for premium NexPay members.</p>
+    </div>
+  </div>
+</section>
+
+<section class="waitlist-section" id="waitlist">
+  <div class="waitlist-box">
+    <div>
+      <h2>Join the Physical Card Waitlist</h2>
+      <p>
+        Be first to know when NexPay physical cards launch.
+        We’ll notify early users before public access opens.
+      </p>
+    </div>
+
+    <form class="waitlist-form" id="physicalWaitlist">
+      <input type="text" id="wlName" placeholder="Full name" required>
+      <input type="email" id="wlEmail" placeholder="Email address" required>
+
+      <select id="wlPlan" required>
+        <option value="">Interested card type</option>
+        <option>Visa Physical Card</option>
+        <option>Mastercard Physical Card</option>
+        <option>Business Physical Card</option>
+      </select>
+
+      <button class="primary-btn" type="submit">
+        Join Waitlist <i class="fa-solid fa-bell"></i>
+      </button>
+
+      <div class="waitlist-msg" id="waitlistMsg">
+        You’re on the physical card waitlist ✅
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 NexPay. Demo crypto card website.</p>
+</footer>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuToggle.addEventListener("click", () => {
+  mobileMenu.classList.toggle("active");
+  const icon = menuToggle.querySelector("i");
+  icon.classList.toggle("fa-bars");
+  icon.classList.toggle("fa-xmark");
+});
+
+const physicalWaitlist = document.getElementById("physicalWaitlist");
+const waitlistMsg = document.getElementById("waitlistMsg");
+
+physicalWaitlist.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const entry = {
+    name: document.getElementById("wlName").value,
+    email: document.getElementById("wlEmail").value,
+    plan: document.getElementById("wlPlan").value,
+    createdAt: new Date().toISOString()
+  };
+
+  const list = JSON.parse(localStorage.getItem("physical_card_waitlist") || "[]");
+  list.push(entry);
+  localStorage.setItem("physical_card_waitlist", JSON.stringify(list));
+
+  waitlistMsg.style.display = "block";
+  physicalWaitlist.reset();
+});
+</script>
+
+</body>
+</html>
