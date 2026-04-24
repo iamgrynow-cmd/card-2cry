@@ -10,50 +10,66 @@
 
 <style>
 .faq-container{
-  max-width:900px;
+  max-width:920px;
   margin:auto;
-  padding:120px 20px 60px;
+  padding:135px 20px 80px;
 }
 
 .faq-container h1{
-  font-size:42px;
-  margin-bottom:20px;
+  font-family:"Plus Jakarta Sans";
+  font-size:clamp(38px,6vw,70px);
   text-align:center;
+  margin-bottom:18px;
 }
 
-.faq-container p{
+.faq-container h1 strong{
+  background:linear-gradient(135deg,#fff0b0,#d8b45d,#9b6d20);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.faq-container>p{
   text-align:center;
   color:rgba(255,255,255,.6);
-  margin-bottom:40px;
+  font-size:18px;
+  line-height:1.7;
+  margin-bottom:42px;
 }
 
 .faq{
   border:1px solid rgba(255,255,255,.12);
-  border-radius:18px;
-  margin-bottom:15px;
+  border-radius:22px;
+  margin-bottom:16px;
   overflow:hidden;
-  background:rgba(255,255,255,.05);
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(18px);
 }
 
 .faq-question{
-  padding:20px;
-  font-weight:700;
+  padding:22px;
+  font-weight:900;
   display:flex;
   justify-content:space-between;
+  gap:20px;
   cursor:pointer;
 }
 
 .faq-answer{
   max-height:0;
   overflow:hidden;
-  padding:0 20px;
-  color:rgba(255,255,255,.65);
-  transition:.3s;
+  padding:0 22px;
+  color:rgba(255,255,255,.62);
+  line-height:1.7;
+  transition:.3s ease;
 }
 
 .faq.active .faq-answer{
-  max-height:200px;
-  padding:20px;
+  max-height:240px;
+  padding:0 22px 22px;
+}
+
+.faq.active .faq-question i{
+  transform:rotate(45deg);
 }
 </style>
 </head>
@@ -63,88 +79,97 @@
 <header class="nav">
   <a class="logo" href="index.html">
     <div class="logo-icon">⚡</div>
-    <div>
-      <h2>NexPay</h2>
-      <p>Crypto Cards</p>
-    </div>
+    <div><h2>NexPay</h2><p>Crypto Cards</p></div>
   </a>
 
   <nav class="desktop-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
     <a href="virtual-cards.html">Virtual Cards</a>
+    <a href="physical-cards.html">Physical Cards</a>
+    <a href="api-access.html">API</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
   </nav>
+
+  <div class="nav-btns">
+    <a href="login.html" class="login">Log in</a>
+    <a href="signup.html" class="signup">Sign up</a>
+  </div>
+
+  <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
 </header>
 
-<div class="faq-container">
-
-<h1>Frequently Asked Questions</h1>
-<p>Everything you need to know about NexPay</p>
-
-<!-- FAQ ITEM -->
-<div class="faq">
-  <div class="faq-question">
-    What is NexPay?
-    <i class="fa-solid fa-plus"></i>
-  </div>
-  <div class="faq-answer">
-    NexPay is a crypto card platform that allows users to use virtual cards for online payments.
-  </div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="virtual-cards.html">Virtual Cards</a>
+  <a href="physical-cards.html">Physical Cards</a>
+  <a href="api-access.html">API Access</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html">Log in</a>
+  <a href="signup.html" class="mobile-signup">Sign up</a>
 </div>
 
-<div class="faq">
-  <div class="faq-question">
-    How do I create a card?
-    <i class="fa-solid fa-plus"></i>
-  </div>
-  <div class="faq-answer">
-    First create an account, then choose a plan from pricing. Your card will be available in dashboard.
-  </div>
-</div>
+<main class="faq-container">
+  <h1>Frequently Asked <strong>Questions</strong></h1>
+  <p>Everything you need to know about NexPay cards, plans, dashboard and API access.</p>
 
-<div class="faq">
-  <div class="faq-question">
-    Can I add funds?
-    <i class="fa-solid fa-plus"></i>
+  <div class="faq">
+    <div class="faq-question">What is NexPay? <i class="fa-solid fa-plus"></i></div>
+    <div class="faq-answer">NexPay is a premium crypto-card platform concept for virtual cards, crypto-powered online spending, business payments and API access.</div>
   </div>
-  <div class="faq-answer">
-    Yes, you can add funds from dashboard using the Add Funds button.
-  </div>
-</div>
 
-<div class="faq">
-  <div class="faq-question">
-    Is NexPay secure?
-    <i class="fa-solid fa-plus"></i>
+  <div class="faq">
+    <div class="faq-question">How do I create a card? <i class="fa-solid fa-plus"></i></div>
+    <div class="faq-answer">Create an account, login, choose a plan from pricing, and your selected card plan will appear in your dashboard.</div>
   </div>
-  <div class="faq-answer">
-    NexPay is designed with secure architecture, spending controls, and compliance-ready systems.
-  </div>
-</div>
 
-<div class="faq">
-  <div class="faq-question">
-    Do you support physical cards?
-    <i class="fa-solid fa-plus"></i>
+  <div class="faq">
+    <div class="faq-question">Can I add funds? <i class="fa-solid fa-plus"></i></div>
+    <div class="faq-answer">The demo dashboard can support add funds flow using local storage. For real payment handling, backend and compliance infrastructure are required.</div>
   </div>
-  <div class="faq-answer">
-    Physical cards are currently under development and will be available soon.
+
+  <div class="faq">
+    <div class="faq-question">Do you support physical cards? <i class="fa-solid fa-plus"></i></div>
+    <div class="faq-answer">Physical cards are presented as a premium upcoming feature with waitlist style onboarding.</div>
   </div>
-</div>
 
-</div>
+  <div class="faq">
+    <div class="faq-question">Is KYC required for real cards? <i class="fa-solid fa-plus"></i></div>
+    <div class="faq-answer">Yes. Any real card issuing or financial service would require KYC, compliance review, issuer approval and regional eligibility checks.</div>
+  </div>
 
-<footer>
-  <p>© 2026 NexPay</p>
+  <div class="faq">
+    <div class="faq-question">Can businesses request API access? <i class="fa-solid fa-plus"></i></div>
+    <div class="faq-answer">Yes. Businesses, agencies and fintech teams can use the contact page to request API or partnership access.</div>
+  </div>
+</main>
+
+<footer class="luxury-footer">
+  <div class="footer-wrap">
+    <div class="footer-brand">
+      <a class="logo footer-logo" href="index.html"><div class="logo-icon">⚡</div><div><h2>NexPay</h2><p>Crypto Cards</p></div></a>
+      <p>NexPay is a premium digital finance platform for virtual cards, crypto-powered spending, business payments and global online transactions.</p>
+    </div>
+    <div class="footer-col"><h4>Platform</h4><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="pricing.html">Pricing</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a><a href="careers.html">Careers</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="faq.html">FAQ</a><a href="help-center.html">Help Center</a><a href="live-status.html">Live Status</a><a href="security.html">Security</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="terms.html">Terms</a><a href="privacy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="risk-disclosure.html">Risk Disclosure</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 NexPay. All rights reserved.</p><p>Premium crypto-card experience for the next generation of digital payments.</p></div>
 </footer>
 
 <script>
-const faqs = document.querySelectorAll(".faq");
+const menuToggle=document.getElementById("menuToggle");
+const mobileMenu=document.getElementById("mobileMenu");
+menuToggle.addEventListener("click",()=>{mobileMenu.classList.toggle("active");const icon=menuToggle.querySelector("i");icon.classList.toggle("fa-bars");icon.classList.toggle("fa-xmark");});
 
-faqs.forEach(faq=>{
-  faq.addEventListener("click", ()=>{
-    faq.classList.toggle("active");
-  });
+document.querySelectorAll(".faq").forEach(faq=>{
+  faq.addEventListener("click",()=>faq.classList.toggle("active"));
 });
 </script>
 
