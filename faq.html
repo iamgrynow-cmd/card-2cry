@@ -1,1 +1,152 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexPay FAQ</title><meta name="description" content="Frequently asked questions"><script src="https://cdn.tailwindcss.com"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><link rel="stylesheet" href="assets/css/style.css"></head><body class="premium-bg noise"><header class="nav"><div class="container nav-inner"><a class="brand" href="index.html"><div class="brand-icon gold-gradient shadow-glow"><i class="fa-solid fa-bolt"></i></div><div><div class="brand-title">NexPay</div><div class="brand-sub">Crypto Cards</div></div></a><nav class="nav-links"><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="live-status.html">Live Status</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a></nav><div class="nav-actions"><a class="btn btn-glass" href="login.html">Log in</a><a class="btn btn-gold shadow-glow" href="signup.html">Sign up</a></div><button id="menuBtn" class="menu-btn"><i class="fa-solid fa-bars"></i></button></div><div id="mobileMenu" class="mobile-menu"><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="live-status.html">Live Status</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="login.html">Log in</a><a href="signup.html">Sign up</a></div></header><main><section class="page-hero"><div class="container"><p class="eyebrow">FAQ</p><h1 class="h1">Frequently asked questions.</h1><p class="lead">Important questions before launch.</p></div></section><section class="section"><div class="container legal-box"><details class="panel glass" style="margin-bottom:14px"><summary><strong>How do I create a virtual card?</strong></summary><p class="muted">Sign up, complete verification, add funds, then request a card from the dashboard demo.</p></details><details class="panel glass" style="margin-bottom:14px"><summary><strong>Which cryptocurrencies are supported?</strong></summary><p class="muted">For a real product, supported assets depend on wallet, liquidity and compliance partners.</p></details><details class="panel glass" style="margin-bottom:14px"><summary><strong>Can it be used internationally?</strong></summary><p class="muted">Coverage depends on issuer and network rules.</p></details><details class="panel glass" style="margin-bottom:14px"><summary><strong>Is KYC required?</strong></summary><p class="muted">Yes, any compliant card rollout should include KYC and AML checks.</p></details></div></section></main><footer class="footer"><div class="container footer-grid"><div><a class="brand" href="index.html"><div class="brand-icon gold-gradient"><i class="fa-solid fa-bolt"></i></div><div><div class="brand-title">NexPay</div><div class="brand-sub">Crypto Cards</div></div></a><p class="muted">Demo crypto card website for market validation. Not a bank, issuer, custodian, or licensed financial provider.</p></div><div><h3>Platform</h3><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="dashboard.html">Dashboard</a><a href="pricing.html">Pricing</a></div><div><h3>Support</h3><a href="faq.html">FAQ</a><a href="help-center.html">Help Center</a><a href="live-status.html">Live Status</a><a href="contact.html">Contact</a><a href="about.html">About</a></div><div><h3>Legal</h3><a href="terms.html">Terms</a><a href="privacy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="compliance.html">Compliance</a><a href="risk-disclosure.html">Risk Disclosure</a><a href="security.html">Security</a><p class="muted">© <span id="year"></span> NexPay</p></div></div></footer><script src="assets/js/main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexPay | FAQ</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+.faq-container{
+  max-width:900px;
+  margin:auto;
+  padding:120px 20px 60px;
+}
+
+.faq-container h1{
+  font-size:42px;
+  margin-bottom:20px;
+  text-align:center;
+}
+
+.faq-container p{
+  text-align:center;
+  color:rgba(255,255,255,.6);
+  margin-bottom:40px;
+}
+
+.faq{
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  margin-bottom:15px;
+  overflow:hidden;
+  background:rgba(255,255,255,.05);
+}
+
+.faq-question{
+  padding:20px;
+  font-weight:700;
+  display:flex;
+  justify-content:space-between;
+  cursor:pointer;
+}
+
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  padding:0 20px;
+  color:rgba(255,255,255,.65);
+  transition:.3s;
+}
+
+.faq.active .faq-answer{
+  max-height:200px;
+  padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+  <a class="logo" href="index.html">
+    <div class="logo-icon">⚡</div>
+    <div>
+      <h2>NexPay</h2>
+      <p>Crypto Cards</p>
+    </div>
+  </a>
+
+  <nav class="desktop-nav">
+    <a href="virtual-cards.html">Virtual Cards</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+</header>
+
+<div class="faq-container">
+
+<h1>Frequently Asked Questions</h1>
+<p>Everything you need to know about NexPay</p>
+
+<!-- FAQ ITEM -->
+<div class="faq">
+  <div class="faq-question">
+    What is NexPay?
+    <i class="fa-solid fa-plus"></i>
+  </div>
+  <div class="faq-answer">
+    NexPay is a crypto card platform that allows users to use virtual cards for online payments.
+  </div>
+</div>
+
+<div class="faq">
+  <div class="faq-question">
+    How do I create a card?
+    <i class="fa-solid fa-plus"></i>
+  </div>
+  <div class="faq-answer">
+    First create an account, then choose a plan from pricing. Your card will be available in dashboard.
+  </div>
+</div>
+
+<div class="faq">
+  <div class="faq-question">
+    Can I add funds?
+    <i class="fa-solid fa-plus"></i>
+  </div>
+  <div class="faq-answer">
+    Yes, you can add funds from dashboard using the Add Funds button.
+  </div>
+</div>
+
+<div class="faq">
+  <div class="faq-question">
+    Is NexPay secure?
+    <i class="fa-solid fa-plus"></i>
+  </div>
+  <div class="faq-answer">
+    NexPay is designed with secure architecture, spending controls, and compliance-ready systems.
+  </div>
+</div>
+
+<div class="faq">
+  <div class="faq-question">
+    Do you support physical cards?
+    <i class="fa-solid fa-plus"></i>
+  </div>
+  <div class="faq-answer">
+    Physical cards are currently under development and will be available soon.
+  </div>
+</div>
+
+</div>
+
+<footer>
+  <p>© 2026 NexPay</p>
+</footer>
+
+<script>
+const faqs = document.querySelectorAll(".faq");
+
+faqs.forEach(faq=>{
+  faq.addEventListener("click", ()=>{
+    faq.classList.toggle("active");
+  });
+});
+</script>
+
+</body>
+</html>
