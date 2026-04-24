@@ -1,25 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NexPay | Dashboard</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#fff;font-family:Inter,sans-serif}
+a{text-decoration:none;color:inherit}
+
+.header{
+  min-height:90px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 48px;
+  background:#050509;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-size:28px;
+  font-weight:900;
+}
+
+.logo-mark{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:#fff;
+  display:grid;
+  place-items:center;
+}
+
+.logo-mark span{
+  width:22px;
+  height:22px;
+  background:#000;
+  transform:rotate(45deg);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:26px;
+  color:rgba(255,255,255,.65);
+  font-weight:800;
+}
+
+.logout{
+  padding:12px 20px;
+  border-radius:999px;
+  background:#17171d;
+  border:1px solid rgba(255,255,255,.14);
+  font-weight:800;
+  cursor:pointer;
+  color:#fff;
+}
+
+.main{
+  padding:50px 48px;
+}
+
+h1{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.welcome{
+  color:rgba(255,255,255,.65);
+  font-size:20px;
+  margin-bottom:35px;
+}
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:420px 1fr;
+  gap:28px;
+  align-items:start;
+}
+
+.card-ui{
+  width:100%;
+  min-height:250px;
+  border-radius:28px;
+  padding:28px;
+  background:
+    radial-gradient(circle at 25% 15%, rgba(216,180,93,.45), transparent 30%),
+    linear-gradient(135deg, #111, #1a1a1a, #020202);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 40px 100px rgba(0,0,0,.6);
+}
+
+.card-ui-top,
+.card-ui-bottom{
+  display:flex;
+  justify-content:space-between;
+}
+
+.card-ui-top p,
+.card-ui small{
+  color:rgba(255,255,255,.45);
+  text-transform:uppercase;
+  font-size:10px;
+  letter-spacing:3px;
+}
+
+.chip{
+  width:58px;
+  height:42px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#fff0b0,#d8b45d,#9b6d20);
+}
+
+.card-ui-number{
+  margin:52px 0;
+  font-family:monospace;
+  font-size:24px;
+  letter-spacing:6px;
+}
+
+.profile-card{
+  padding:28px;
+  border-radius:18px;
+  background:#17171d;
+  border:1px solid #2a3040;
+}
+
+.profile-card h2{
+  font-size:25px;
+  margin-bottom:20px;
+}
+
+.profile-card p{
+  font-size:18px;
+  color:rgba(255,255,255,.72);
+  margin:14px 0;
+}
+
+.gold{color:#d8b45d}
+
+.stats{
+  margin-top:28px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.stat-box{
+  background:#17171d;
+  border:1px solid #2a3040;
+  border-radius:18px;
+  padding:24px;
+}
+
+.stat-box p{
+  color:rgba(255,255,255,.55);
+}
+
+.stat-box h3{
+  font-size:28px;
+  margin-top:8px;
+}
+
+.table-wrap{
+  margin-top:34px;
+  width:100%;
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  min-width:850px;
+  border-collapse:collapse;
+  background:#17171d;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+th{
+  text-align:left;
+  padding:20px;
+  color:rgba(255,255,255,.62);
+  font-size:16px;
+}
+
+td{
+  padding:24px 20px;
+  color:rgba(255,255,255,.7);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+.empty{
+  text-align:center;
+  margin-top:26px;
+  color:rgba(255,255,255,.65);
+  font-size:18px;
+}
+
+.empty a{
+  color:#d8b45d;
+  font-weight:800;
+}
+
+@media(max-width:900px){
+  .header{
+    padding:20px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:18px;
+  }
+
+  .nav{
+    flex-wrap:wrap;
+    gap:16px;
+    font-size:14px;
+  }
+
+  .main{
+    padding:34px 20px;
+  }
+
+  h1{
+    font-size:34px;
+  }
+
+  .dashboard-grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .card-ui-number{
+    font-size:18px;
+    letter-spacing:3px;
+  }
+
+  .profile-card p{
+    font-size:16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <a href="index.html" class="logo">
+    <div class="logo-mark"><span></span></div>
+    NEXPAY
+  </a>
+
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="virtual-cards.html">Virtual Cards</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <button class="logout" onclick="logout()">Log out</button>
+    <i class="fa-solid fa-circle-user" style="font-size:28px;"></i>
+  </nav>
+</header>
+
+<main class="main">
+  <h1>Dashboard</h1>
+  <p class="welcome">Welcome back, <span id="userName">User</span></p>
+
+  <section class="dashboard-grid">
+    <div class="card-ui">
+      <div class="card-ui-top">
+        <div>
+          <h2>NexPay</h2>
+          <p id="cardPlan">No Plan</p>
+        </div>
+        <div class="chip"></div>
+      </div>
+
+      <div class="card-ui-number">•••• 4582 9210</div>
+
+      <div class="card-ui-bottom">
+        <div>
+          <small>Card Holder</small>
+          <h4 id="cardUser">USER NAME</h4>
+        </div>
+
+        <div style="text-align:right;">
+          <small>Status</small>
+          <h4 id="cardStatus" style="color:#ffcc66;">PENDING</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <h2>Profile Details</h2>
+      <p>Email: <span id="userEmail">Not available</span></p>
+      <p>Name: <span id="profileName">User</span></p>
+      <p>Selected Plan: <span class="gold" id="selectedPlan">No plan selected</span></p>
+      <p>Joined: <span id="joinedDate">--</span></p>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat-box">
+      <p>Available Balance</p>
+      <h3>$0.00</h3>
+    </div>
+
+    <div class="stat-box">
+      <p>This Month Spent</p>
+      <h3>$0.00</h3>
+    </div>
+
+    <div class="stat-box">
+      <p>Transactions</p>
+      <h3>0</h3>
+    </div>
+  </section>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Transaction Status</th>
+          <th>Card Status</th>
+          <th>Amount Paid</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="6" style="text-align:center;">No transactions yet</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="empty">
+    No spending activity yet. <a href="pricing.html">Choose or update plan</a>
+  </div>
+</main>
+
 <script>
-const user = JSON.parse(localStorage.getItem("nexpay_user")) || {};
-const selectedPlan = localStorage.getItem("selected_plan");
-const isLoggedIn = localStorage.getItem("isLoggedIn");
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("nexpay_user")) || {};
+  const selectedPlan = localStorage.getItem("selected_plan");
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-if (isLoggedIn !== "true") {
-  window.location.href = "login.html";
-}
+  if (isLoggedIn !== "true") {
+    window.location.href = "login.html";
+    return;
+  }
 
-document.getElementById("userName").textContent = user.name || "User";
-document.getElementById("profileName").textContent = user.name || "User";
-document.getElementById("userEmail").textContent = user.email || "Not available";
-document.getElementById("selectedPlan").textContent = selectedPlan || "No plan selected";
+  document.getElementById("userName").textContent = user.name || "User";
+  document.getElementById("profileName").textContent = user.name || "User";
+  document.getElementById("cardUser").textContent = (user.name || "User").toUpperCase();
+  document.getElementById("userEmail").textContent = user.email || "Not available";
 
-if (user.createdAt) {
-  document.getElementById("joinedDate").textContent = new Date(user.createdAt).toLocaleString();
-} else {
-  document.getElementById("joinedDate").textContent = "--";
-}
+  if (selectedPlan) {
+    document.getElementById("selectedPlan").textContent = selectedPlan;
+    document.getElementById("cardPlan").textContent = selectedPlan;
+    document.getElementById("cardStatus").textContent = "ACTIVE";
+    document.getElementById("cardStatus").style.color = "#42e89b";
+  } else {
+    document.getElementById("selectedPlan").textContent = "No plan selected";
+    document.getElementById("cardPlan").textContent = "No Plan";
+    document.getElementById("cardStatus").textContent = "PENDING";
+  }
+
+  if (user.createdAt) {
+    document.getElementById("joinedDate").textContent = new Date(user.createdAt).toLocaleString();
+  } else {
+    document.getElementById("joinedDate").textContent = "--";
+  }
+});
 
 function logout() {
   localStorage.removeItem("isLoggedIn");
   window.location.href = "login.html";
 }
 </script>
+
+</body>
+</html>
