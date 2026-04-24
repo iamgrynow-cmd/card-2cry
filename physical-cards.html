@@ -6,6 +6,37 @@
 <title>NexPay | Physical Cards</title>
 
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+.waitlist-box{
+  margin-top:30px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.waitlist-box input{
+  flex:1;
+  min-width:200px;
+  padding:16px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+}
+
+.success-msg{
+  margin-top:15px;
+  color:#42e89b;
+  display:none;
+  font-weight:700;
+}
+
+.card-preview{
+  animation:float 4s ease-in-out infinite;
+}
+</style>
 </head>
 
 <body>
@@ -15,24 +46,85 @@
     <div class="logo-icon">⚡</div>
     <div><h2>NexPay</h2><p>Crypto Cards</p></div>
   </a>
+
+  <nav class="desktop-nav">
+    <a href="index.html">Home</a>
+    <a href="virtual-cards.html">Virtual Cards</a>
+    <a href="physical-cards.html">Physical Cards</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
 <section class="hero">
   <div class="hero-left">
-    <h1>Physical Cards</h1>
-    <p>Premium physical crypto cards coming soon.</p>
 
-    <div style="margin-top:30px;">
-      <button class="primary-btn">Join Waitlist</button>
+    <div class="badge"><span></span> Coming soon</div>
+
+    <h1>
+      Premium physical <br>
+      <strong>crypto cards.</strong>
+    </h1>
+
+    <p>
+      NexPay physical cards are coming soon.  
+      Experience premium metal cards, global payments and real-world crypto spending.
+    </p>
+
+    <div class="waitlist-box">
+      <input type="email" id="email" placeholder="Enter your email">
+      <button class="primary-btn" onclick="joinWaitlist()">Join Waitlist</button>
     </div>
+
+    <div class="success-msg" id="successMsg">
+      You're on the waitlist 🚀
+    </div>
+
+  </div>
+
+  <div class="hero-right">
+    <div class="glow"></div>
+
+    <div class="card card-preview">
+      <div class="card-top">
+        <div>
+          <h2>NexPay</h2>
+          <p>Physical Card</p>
+        </div>
+        <div class="chip"></div>
+      </div>
+
+      <div class="card-number">•••• 8800 6621</div>
+
+      <div class="card-bottom">
+        <div>
+          <small>Type</small>
+          <h4>Metal Card</h4>
+        </div>
+        <div>
+          <small>Status</small>
+          <h4 style="color:#d8b45d;">COMING</h4>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <footer class="luxury-footer">
   <div class="footer-bottom">
-    © 2026 NexPay
+    <p>© 2026 NexPay. All rights reserved.</p>
   </div>
 </footer>
+
+<script>
+function joinWaitlist(){
+  const email=document.getElementById("email").value;
+  if(email){
+    document.getElementById("successMsg").style.display="block";
+  }
+}
+</script>
 
 </body>
 </html>
