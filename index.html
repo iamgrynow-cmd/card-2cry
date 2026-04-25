@@ -4,11 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>NexPay | Crypto Cards</title>
+
 <link rel="stylesheet" href="style.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 </head>
 
 <body>
+
 <header class="nav">
   <a class="logo" href="index.html">
     <div class="logo-icon">⚡</div>
@@ -26,7 +29,8 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <div class="nav-btns">
+  <!-- IMPORTANT ID -->
+  <div class="nav-btns" id="authButtons">
     <a href="login.html" class="login">Log in</a>
     <a href="signup.html" class="signup">Sign up</a>
   </div>
@@ -39,122 +43,129 @@
   <a href="about.html">About</a>
   <a href="virtual-cards.html">Virtual Cards</a>
   <a href="physical-cards.html">Physical Cards</a>
-  <a href="api-access.html">API Access</a>
+  <a href="api-access.html">API</a>
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
-  <a href="developers.html">Developers</a>
-  <a href="docs.html">Docs</a>
-  <a href="security.html">Security</a>
   <a href="login.html">Log in</a>
-  <a href="signup.html" class="mobile-signup">Sign up</a>
+  <a href="signup.html">Sign up</a>
 </div>
 
 <main class="hero">
+
   <section class="hero-left">
-    <div class="badge"><span></span> Crypto funded cards for global spending</div>
+    <div class="badge">Crypto funded cards</div>
     <h1>Create a secure <br><strong>crypto card.</strong></h1>
-    <p>Fund your card with crypto, manage spending from one dashboard, and create premium virtual cards for online payments, subscriptions, ads and business expenses.</p>
+    <p>Fund your card with crypto and spend globally.</p>
 
     <div class="hero-actions">
-      <a href="signup.html" class="primary-btn">Create Account <i class="fa-solid fa-arrow-right"></i></a>
-      <a href="virtual-cards.html" class="secondary-btn">Explore Cards <i class="fa-solid fa-credit-card"></i></a>
-    </div>
-
-    <div class="stats">
-      <div><h3>Instant</h3><p>Virtual card demo</p></div>
-      <div><h3>Global</h3><p>Spend vision</p></div>
-      <div><h3>API</h3><p>Business access</p></div>
+      <a href="signup.html" class="primary-btn">Create Account</a>
+      <a href="virtual-cards.html" class="secondary-btn">Explore Cards</a>
     </div>
   </section>
 
   <section class="hero-right">
-    <div class="glow"></div>
     <div class="card">
       <div class="card-top">
-        <div><h2>NexPay</h2><p>Elite Black</p></div>
-        <div class="chip"></div>
+        <h2>NexPay</h2>
       </div>
-      <div class="card-number">•••• 8294 7710</div>
+
+      <div class="card-number">•••• 8294</div>
+
       <div class="card-bottom">
-        <div><small>Card Holder</small><h4>NEXPAY USER</h4></div>
-        <div><small>Status</small><h4 class="active">ACTIVE</h4></div>
+        <div>
+          <small>Card Holder</small>
+          <h4 id="cardName">NEXPAY USER</h4>
+        </div>
+        <div>
+          <small>Status</small>
+          <h4 class="active">ACTIVE</h4>
+        </div>
       </div>
     </div>
   </section>
+
 </main>
 
-<section class="features">
-  <h2>Premium crypto-card platform</h2>
-  <p>Everything you need to present a serious fintech product.</p>
-  <div class="feature-grid">
-    <div class="feature-card"><i class="fa-solid fa-credit-card"></i><h3>Virtual Cards</h3><p>Create online cards for payments, subscriptions and ads.</p></div>
-    <div class="feature-card"><i class="fa-solid fa-wallet"></i><h3>Crypto Funded</h3><p>Position your product around crypto-to-card spending.</p></div>
-    <div class="feature-card"><i class="fa-solid fa-shield-halved"></i><h3>Secure Controls</h3><p>Freeze cards, manage limits and monitor card activity.</p></div>
-  </div>
-</section>
-
-<section class="features">
-  <h2>How It Works</h2>
-  <p>Start spending with NexPay in three simple steps.</p>
-  <div class="feature-grid">
-    <div class="feature-card"><i class="fa-solid fa-user-plus"></i><h3>Create Account</h3><p>Sign up and access your secure NexPay dashboard.</p></div>
-    <div class="feature-card"><i class="fa-solid fa-coins"></i><h3>Fund With Crypto</h3><p>Add crypto balance and convert it into card spending power.</p></div>
-    <div class="feature-card"><i class="fa-solid fa-credit-card"></i><h3>Use Your Card</h3><p>Shop online, pay subscriptions and manage everything in one place.</p></div>
-  </div>
-</section>
-
-<section class="features">
-  <h2>Why Choose Our Crypto Card</h2>
-  <p>Built for speed, security and global usability.</p>
-  <div class="feature-grid">
-    <div class="feature-card"><i class="fa-solid fa-bolt"></i><h3>Instant Access</h3><p>Create and use your virtual card quickly for online payments.</p></div>
-    <div class="feature-card"><i class="fa-solid fa-globe"></i><h3>Global Payments</h3><p>Designed for international payments, online tools and digital services.</p></div>
-    <div class="feature-card"><i class="fa-solid fa-lock"></i><h3>Secure & Private</h3><p>Control card usage, spending limits and account security.</p></div>
-  </div>
-</section>
-
-<section class="features">
-  <h2>Where You Can Use It</h2>
-  <p>Use NexPay cards across popular online spending categories.</p>
-  <div class="feature-grid">
-    <div class="feature-card"><i class="fa-solid fa-bag-shopping"></i><h3>Online Shopping</h3><p>Pay on e-commerce websites and online stores.</p></div>
-    <div class="feature-card"><i class="fa-solid fa-layer-group"></i><h3>Subscriptions & SaaS</h3><p>Use for monthly tools, cloud apps and software services.</p></div>
-    <div class="feature-card"><i class="fa-solid fa-bullhorn"></i><h3>Ads & Marketing Tools</h3><p>Manage payments for ads, marketing platforms and business tools.</p></div>
-    <div class="feature-card"><i class="fa-solid fa-gamepad"></i><h3>Gaming & Digital Goods</h3><p>Buy games, credits, digital products and online items.</p></div>
-    <div class="feature-card"><i class="fa-solid fa-plane"></i><h3>Travel & Bookings</h3><p>Use for hotels, bookings, flights and travel-related purchases.</p></div>
-    <div class="feature-card"><i class="fa-solid fa-earth-americas"></i><h3>Global Services</h3><p>Perfect for worldwide digital payments and online platforms.</p></div>
-  </div>
-</section>
-
+<!-- PRICING SECTION -->
 <section class="features">
   <h2>Choose Your Card</h2>
-  <p>Select the card plan that fits your spending needs.</p>
+
   <div class="feature-grid">
-    <div class="feature-card"><i class="fa-brands fa-cc-visa"></i><h3>Visa Card</h3><h2 style="font-size:42px;margin:12px 0;color:#d8b45d;">$29</h2><p>Perfect for everyday online spending, shopping and subscriptions.</p><a href="pricing.html" class="primary-btn" style="margin-top:18px;">View Plans</a></div>
-    <div class="feature-card"><i class="fa-brands fa-cc-mastercard"></i><h3>Mastercard</h3><h2 style="font-size:42px;margin:12px 0;color:#d8b45d;">$59</h2><p>Premium card option with higher limits and advanced usage.</p><a href="pricing.html" class="primary-btn" style="margin-top:18px;">View Plans</a></div>
-    <div class="feature-card"><i class="fa-solid fa-crown"></i><h3>Elite Access</h3><h2 style="font-size:42px;margin:12px 0;color:#d8b45d;">Custom</h2><p>For business users, high-volume spending and API-based access.</p><a href="contact.html" class="secondary-btn" style="margin-top:18px;">Contact Sales</a></div>
+
+    <div class="feature-card">
+      <h3>Visa Card</h3>
+      <h2>$29</h2>
+      <p>Basic online usage</p>
+
+      <!-- FIXED -->
+      <a href="payment.html" class="primary-btn">View Plans</a>
+    </div>
+
+    <div class="feature-card">
+      <h3>Mastercard</h3>
+      <h2>$59</h2>
+      <p>Premium usage</p>
+
+      <!-- FIXED -->
+      <a href="payment.html" class="primary-btn">View Plans</a>
+    </div>
+
   </div>
 </section>
 
 <footer class="luxury-footer">
-  <div class="footer-wrap">
-    <div class="footer-brand">
-      <a class="logo footer-logo" href="index.html"><div class="logo-icon">⚡</div><div><h2>NexPay</h2><p>Crypto Cards</p></div></a>
-      <p>NexPay is a premium digital finance platform for virtual cards, crypto-powered spending, business payments and global online transactions.</p>
-    </div>
-    <div class="footer-col"><h4>Platform</h4><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="pricing.html">Pricing</a></div>
-    <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a><a href="careers.html">Careers</a></div>
-    <div class="footer-col"><h4>Support</h4><a href="faq.html">FAQ</a><a href="help-center.html">Help Center</a><a href="live-status.html">Live Status</a><a href="security.html">Security</a></div>
-    <div class="footer-col"><h4>Legal</h4><a href="terms.html">Terms</a><a href="privacy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="risk-disclosure.html">Risk Disclosure</a></div>
-  </div>
-  <div class="footer-bottom"><p>© 2026 NexPay. All rights reserved.</p><p>Premium crypto-card experience for the next generation of digital payments.</p></div>
+  <p>© 2026 NexPay. All rights reserved.</p>
 </footer>
 
+<!-- MENU -->
 <script>
 const menuToggle=document.getElementById("menuToggle");
 const mobileMenu=document.getElementById("mobileMenu");
-menuToggle.addEventListener("click",()=>{mobileMenu.classList.toggle("active");const icon=menuToggle.querySelector("i");icon.classList.toggle("fa-bars");icon.classList.toggle("fa-xmark");});
+
+menuToggle.onclick=()=>{
+  mobileMenu.classList.toggle("active");
+};
 </script>
+
+<!-- FIREBASE AUTH -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDGwpH-JYuYK4kkUpf3cCsp-Im4urQW9Lk",
+  authDomain: "nexpay-crypto-card.firebaseapp.com",
+  projectId: "nexpay-crypto-card",
+  appId: "1:120822872109:web:9079b4cf4f0cade9c620a4"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+
+  const box = document.getElementById("authButtons");
+
+  if(user && user.emailVerified){
+
+    box.innerHTML = `
+      <a href="dashboard.html" class="signup">Dashboard</a>
+      <button id="logoutBtn" class="login">Logout</button>
+    `;
+
+    let name = user.displayName || user.email.split("@")[0];
+    document.getElementById("cardName").innerText = name.toUpperCase();
+
+    document.getElementById("logoutBtn").onclick = async () => {
+      await signOut(auth);
+      location.reload();
+    };
+
+  }
+
+});
+</script>
+
 </body>
 </html>
