@@ -1,144 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NexPay | Login</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<title>Login</title>
 </head>
-
 <body>
 
-<header class="nav">
-  <a class="logo" href="index.html">
-    <div class="logo-icon">⚡</div>
-    <div><h2>NexPay</h2><p>Crypto Cards</p></div>
-  </a>
-
-  <nav class="desktop-nav">
-    <a href="index.html">Home</a>
-    <a href="virtual-cards.html">Virtual Cards</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <div class="nav-btns">
-    <a href="login.html" class="login">Log in</a>
-    <a href="signup.html" class="signup">Sign up</a>
-  </div>
-</header>
-
-<main class="hero">
-  <section class="hero-left">
-    <div class="badge"><span></span> Secure login</div>
-    <h1>Login to your <br><strong>NexPay account.</strong></h1>
-    <p>Login only works after your email verification is complete.</p>
-  </section>
-
-  <section class="hero-right">
-    <div class="glow"></div>
-
-    <form class="feature-card" id="loginForm" style="width:min(430px,100%);position:relative;z-index:2;">
-      <i class="fa-solid fa-user-lock"></i>
-      <h3>Log In</h3>
-      <p>Use your verified email and password.</p>
-
-      <input id="email" type="email" placeholder="Email address" required
-      style="width:100%;margin-top:20px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;">
-
-      <input id="password" type="password" placeholder="Password" required
-      style="width:100%;margin-top:14px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;">
-
-      <button type="submit" class="primary-btn" id="loginBtn" style="width:100%;margin-top:18px;">
-        Log In <i class="fa-solid fa-arrow-right"></i>
-      </button>
-
-      <p id="msg" style="margin-top:16px;font-weight:800;line-height:1.5;"></p>
-
-      <p style="margin-top:18px;text-align:center;">
-        No account?
-        <a href="signup.html" style="color:#d8b45d;font-weight:800;">Signup</a>
-      </p>
-    </form>
-  </section>
-</main>
+<h2>Login</h2>
+<input id="email" placeholder="Email"><br><br>
+<input id="password" type="password" placeholder="Password"><br><br>
+<button onclick="login()">Login</button>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  setPersistence,
-  browserLocalPersistence
-} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { app } from "./firebase-config.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDGwpH-JYuYK4kkUpf3cCsp-Im4urQW9Lk",
-  authDomain: "nexpay-crypto-card.firebaseapp.com",
-  projectId: "nexpay-crypto-card",
-  storageBucket: "nexpay-crypto-card.firebasestorage.app",
-  messagingSenderId: "120822872109",
-  appId: "1:120822872109:web:9079b4cf4f0cade9c620a4",
-  measurementId: "G-KQE5VRLX4F"
-};
-
-const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const form = document.getElementById("loginForm");
-const msg = document.getElementById("msg");
-const loginBtn = document.getElementById("loginBtn");
+window.login = async () => {
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("password").value;
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  await signInWithEmailAndPassword(auth, email, pass);
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-
-  msg.style.color = "#d8b45d";
-  msg.innerText = "Checking account...";
-  loginBtn.disabled = true;
-  loginBtn.innerText = "Please wait...";
-
-  try {
-    await setPersistence(auth, browserLocalPersistence);
-
-    const userCred = await signInWithEmailAndPassword(auth, email, password);
-    await userCred.user.reload();
-
-    if (!userCred.user.emailVerified) {
-      msg.style.color = "#ffcc66";
-      msg.innerText = "⚠️ Email not verified. Please verify your email first.";
-      loginBtn.disabled = false;
-      loginBtn.innerHTML = 'Log In <i class="fa-solid fa-arrow-right"></i>';
-      return;
-    }
-
-    localStorage.setItem("nexpay_logged_in", "true");
-    localStorage.setItem("nexpay_email", userCred.user.email);
-    localStorage.setItem("nexpay_name", userCred.user.displayName || "NexPay User");
-
-    msg.style.color = "#42e89b";
-    msg.innerText = "✅ Login successful. Redirecting...";
-
-    setTimeout(() => {
-      const redirect = localStorage.getItem("redirect_after_login");  if (redirect) {   localStorage.removeItem("redirect_after_login");   window.location.href = redirect; } else {   window.location.href = "dashboard.html"; }
-    }, 700);
-
-  } catch (error) {
-    loginBtn.disabled = false;
-    loginBtn.innerHTML = 'Log In <i class="fa-solid fa-arrow-right"></i>';
-    msg.style.color = "#ff8080";
-
-    if (error.code === "auth/invalid-credential") {
-      msg.innerText = "Invalid email or password.";
-    } else {
-      msg.innerText = error.message;
-    }
-  }
-});
+  window.location.href = "index.html";
+};
 </script>
 
 </body>
