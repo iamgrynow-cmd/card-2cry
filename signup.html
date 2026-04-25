@@ -1,147 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NexPay | Sign Up</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<title>Signup</title>
 </head>
-
 <body>
 
-<header class="nav">
-  <a class="logo" href="index.html">
-    <div class="logo-icon">⚡</div>
-    <div><h2>NexPay</h2><p>Crypto Cards</p></div>
-  </a>
-
-  <nav class="desktop-nav">
-    <a href="index.html">Home</a>
-    <a href="virtual-cards.html">Virtual Cards</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <div class="nav-btns">
-    <a href="login.html" class="login">Log in</a>
-    <a href="signup.html" class="signup">Sign up</a>
-  </div>
-</header>
-
-<main class="hero">
-  <section class="hero-left">
-    <div class="badge"><span></span> Create account</div>
-    <h1>Create your <br><strong>NexPay account.</strong></h1>
-    <p>Enter your name, email and password. We’ll send a verification link to your email.</p>
-  </section>
-
-  <section class="hero-right">
-    <div class="glow"></div>
-
-    <form class="feature-card" id="signupForm" style="width:min(430px,100%);position:relative;z-index:2;">
-      <i class="fa-solid fa-user-plus"></i>
-      <h3>Create Account</h3>
-      <p>Email verification is required before login.</p>
-
-      <input id="name" type="text" placeholder="Full name" required
-      style="width:100%;margin-top:20px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;">
-
-      <input id="email" type="email" placeholder="Email address" required
-      style="width:100%;margin-top:14px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;">
-
-      <input id="password" type="password" placeholder="Password" required
-      style="width:100%;margin-top:14px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;">
-
-      <button type="submit" class="primary-btn" id="signupBtn" style="width:100%;margin-top:18px;">
-        Sign Up <i class="fa-solid fa-arrow-right"></i>
-      </button>
-
-      <p id="msg" style="margin-top:16px;font-weight:800;line-height:1.5;"></p>
-
-      <p style="margin-top:18px;text-align:center;">
-        Already have account?
-        <a href="login.html" style="color:#d8b45d;font-weight:800;">Login</a>
-      </p>
-    </form>
-  </section>
-</main>
+<h2>Signup</h2>
+<input id="name" placeholder="Name"><br><br>
+<input id="email" placeholder="Email"><br><br>
+<input id="password" type="password" placeholder="Password"><br><br>
+<button onclick="signup()">Sign Up</button>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-  updateProfile,
-  signOut
-} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { app } from "./firebase-config.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDGwpH-JYuYK4kkUpf3cCsp-Im4urQW9Lk",
-  authDomain: "nexpay-crypto-card.firebaseapp.com",
-  projectId: "nexpay-crypto-card",
-  storageBucket: "nexpay-crypto-card.firebasestorage.app",
-  messagingSenderId: "120822872109",
-  appId: "1:120822872109:web:9079b4cf4f0cade9c620a4",
-  measurementId: "G-KQE5VRLX4F"
-};
-
-const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const form = document.getElementById("signupForm");
-const msg = document.getElementById("msg");
-const signupBtn = document.getElementById("signupBtn");
+window.signup = async () => {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("password").value;
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  const userCred = await createUserWithEmailAndPassword(auth, email, pass);
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+  await updateProfile(userCred.user, {
+    displayName: name
+  });
 
-  msg.style.color = "#d8b45d";
-  msg.innerText = "Creating account...";
-  signupBtn.disabled = true;
-  signupBtn.innerText = "Please wait...";
-
-  try {
-    const userCred = await createUserWithEmailAndPassword(auth, email, password);
-
-    await updateProfile(userCred.user, { displayName: name });
-
-    await sendEmailVerification(userCred.user, {
-      url: "https://iamgrynow-cmd.github.io/card-2cry/verify.html",
-      handleCodeInApp: true
-    });
-
-    localStorage.setItem("nexpay_name", name);
-    localStorage.setItem("nexpay_email", email);
-
-    await signOut(auth);
-
-    msg.style.color = "#42e89b";
-    msg.innerText = "✅ Verification email sent! Please check your inbox or spam folder.";
-    signupBtn.innerText = "Email Sent";
-
-  } catch (error) {
-    signupBtn.disabled = false;
-    signupBtn.innerHTML = 'Sign Up <i class="fa-solid fa-arrow-right"></i>';
-
-    if (error.code === "auth/email-already-in-use") {
-      msg.style.color = "#ffcc66";
-      msg.innerText = "⚠️ Account already exists. Please login or check your verification email.";
-    } else if (error.code === "auth/weak-password") {
-      msg.style.color = "#ff8080";
-      msg.innerText = "Password should be at least 6 characters.";
-    } else {
-      msg.style.color = "#ff8080";
-      msg.innerText = error.message;
-    }
-  }
-});
+  alert("Account created!");
+  window.location.href = "login.html";
+};
 </script>
 
 </body>
