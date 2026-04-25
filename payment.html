@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment | NexPay</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+
+<style>
+.payment-container{
+  max-width:500px;
+  margin:120px auto;
+  background:#111;
+  padding:30px;
+  border-radius:16px;
+}
+
+.payment-container h2{
+  margin-bottom:20px;
+}
+
+.plan{
+  display:flex;
+  justify-content:space-between;
+  margin:10px 0;
+  padding:12px;
+  background:#1a1a1f;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.plan.active{
+  border:1px solid gold;
+}
+
+.summary{
+  margin-top:20px;
+  padding:15px;
+  background:#1a1a1f;
+  border-radius:10px;
+}
+
+.pay-btn{
+  margin-top:20px;
+  width:100%;
+  padding:12px;
+  background:#f5c76b;
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="payment-container">
+
+  <h2>Select Card Plan</h2>
+
+  <div class="plan" onclick="selectPlan('basic',29)">
+    <span>Basic Card</span>
+    <strong>$29</strong>
+  </div>
+
+  <div class="plan" onclick="selectPlan('premium',59)">
+    <span>Premium Card</span>
+    <strong>$59</strong>
+  </div>
+
+  <div class="summary">
+    <p>Plan: <span id="planName">None</span></p>
+    <p>Fee: $<span id="planPrice">0</span></p>
+    <p>Crypto Load: $<span id="cryptoAmount">0</span></p>
+  </div>
+
+  <button class="pay-btn" onclick="payNow()">Pay Now</button>
+
+</div>
+
+<script>
+let selectedPlan = null;
+let price = 0;
+
+// plan select
+function selectPlan(plan, amount){
+  selectedPlan = plan;
+  price = amount;
+
+  document.getElementById("planName").innerText = plan;
+  document.getElementById("planPrice").innerText = amount;
+
+  // dummy crypto load logic
+  let cryptoLoad = amount * 10;
+  document.getElementById("cryptoAmount").innerText = cryptoLoad;
+
+  // UI highlight
+  document.querySelectorAll(".plan").forEach(p=>p.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+}
+
+// payment click
+function payNow(){
+
+  if(!selectedPlan){
+    alert("Select a plan first");
+    return;
+  }
+
+  // save user payment status
+  let user = JSON.parse(localStorage.getItem("user")) || {};
+
+  user.isPaid = true;
+  user.plan = selectedPlan;
+
+  localStorage.setItem("user", JSON.stringify(user));
+
+  alert("Payment Successful (Demo)");
+
+  window.location.href = "dashboard.html";
+}
+</script>
+
+</body>
+</html>
