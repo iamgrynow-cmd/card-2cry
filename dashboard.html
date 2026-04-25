@@ -4,8 +4,249 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NexPay | Dashboard</title>
+
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+.dashboard-wrap{
+  padding:130px 6% 70px;
+}
+
+.dashboard-head{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-start;
+  margin-bottom:34px;
+}
+
+.dashboard-head h1{
+  font-family:"Plus Jakarta Sans";
+  font-size:clamp(34px,5vw,58px);
+  line-height:1;
+}
+
+.dashboard-head p{
+  margin-top:12px;
+  color:rgba(255,255,255,.58);
+  line-height:1.7;
+}
+
+.dash-grid{
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  gap:26px;
+  align-items:start;
+}
+
+.clean-card{
+  border-radius:28px;
+  background:rgba(255,255,255,.065);
+  border:1px solid rgba(255,255,255,.13);
+  padding:28px;
+  backdrop-filter:blur(18px);
+}
+
+.clean-card h2{
+  font-size:24px;
+  margin-bottom:18px;
+}
+
+.profile-line{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  padding:15px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.profile-line:last-child{
+  border-bottom:none;
+}
+
+.profile-line span{
+  color:rgba(255,255,255,.5);
+}
+
+.profile-line strong{
+  text-align:right;
+  color:#fff;
+}
+
+.status-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 13px;
+  border-radius:999px;
+  background:rgba(255,204,102,.12);
+  color:#ffcc66;
+  font-weight:900;
+  font-size:13px;
+}
+
+.status-pill span{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#ffcc66;
+  box-shadow:0 0 16px #ffcc66;
+}
+
+.virtual-card-preview{
+  min-height:285px;
+  border-radius:34px;
+  padding:30px;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(216,180,93,.42), transparent 30%),
+    linear-gradient(135deg,#111,#1b1b1b,#020202);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 42px 110px rgba(0,0,0,.55);
+  position:relative;
+  overflow:hidden;
+}
+
+.virtual-card-preview::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent 15%,rgba(255,255,255,.08),transparent 55%);
+  transform:translateX(-100%);
+  animation:shine 4s infinite;
+}
+
+@keyframes shine{
+  0%{transform:translateX(-100%)}
+  55%{transform:translateX(100%)}
+  100%{transform:translateX(100%)}
+}
+
+.vc-content{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.vc-top,.vc-bottom{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.vc-label{
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+  margin-top:4px;
+}
+
+.vc-chip{
+  width:58px;
+  height:42px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#fff0b0,#d8b45d,#9b6d20);
+}
+
+.vc-number{
+  margin:45px 0;
+  font-family:monospace;
+  font-size:25px;
+  letter-spacing:5px;
+}
+
+.lock-note{
+  margin-top:18px;
+  padding:16px;
+  border-radius:18px;
+  background:rgba(255,204,102,.08);
+  border:1px solid rgba(255,204,102,.18);
+  color:rgba(255,255,255,.7);
+  line-height:1.7;
+}
+
+.action-row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:22px;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:26px;
+}
+
+.info-box{
+  padding:22px;
+  border-radius:22px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.11);
+}
+
+.info-box p{
+  color:rgba(255,255,255,.55);
+}
+
+.info-box h3{
+  margin-top:8px;
+  font-size:26px;
+}
+
+.transaction-empty{
+  margin-top:26px;
+  text-align:center;
+  padding:36px;
+  border-radius:26px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.11);
+}
+
+.transaction-empty i{
+  font-size:34px;
+  color:#d8b45d;
+  margin-bottom:14px;
+}
+
+.transaction-empty p{
+  color:rgba(255,255,255,.56);
+  margin-top:8px;
+}
+
+@media(max-width:900px){
+  .dashboard-head{
+    flex-direction:column;
+  }
+
+  .dash-grid{
+    grid-template-columns:1fr;
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .vc-number{
+    font-size:18px;
+    letter-spacing:3px;
+  }
+
+  .profile-line{
+    flex-direction:column;
+    gap:6px;
+  }
+
+  .profile-line strong{
+    text-align:left;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -13,7 +254,10 @@
 <header class="nav">
   <a class="logo" href="index.html">
     <div class="logo-icon">⚡</div>
-    <div><h2>NexPay</h2><p>Dashboard</p></div>
+    <div>
+      <h2>NexPay</h2>
+      <p>Dashboard</p>
+    </div>
   </a>
 
   <nav class="desktop-nav">
@@ -29,60 +273,118 @@
   </div>
 </header>
 
-<main class="hero">
-  <section class="hero-left">
-    <div class="badge"><span></span> Account dashboard</div>
+<main class="dashboard-wrap">
 
-    <h1>Welcome back, <br><strong id="userName">User</strong></h1>
-
-    <p>
-      Manage your NexPay account, selected plan, card status and transactions from one dashboard.
-    </p>
-  </section>
-
-  <section class="hero-right">
-    <div class="glow"></div>
-
-    <div class="card">
-      <div class="card-top">
-        <div><h2>NexPay</h2><p id="cardPlan">No Plan</p></div>
-        <div class="chip"></div>
-      </div>
-
-      <div class="card-number">•••• 4582 9210</div>
-
-      <div class="card-bottom">
-        <div><small>Card Holder</small><h4 id="cardUser">USER</h4></div>
-        <div><small>Status</small><h4 class="active">ACTIVE</h4></div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<section class="features">
-  <h2>Your Account</h2>
-  <p>Your verified NexPay profile details.</p>
-
-  <div class="feature-grid">
-    <div class="feature-card">
-      <i class="fa-solid fa-user"></i>
-      <h3>Profile</h3>
-      <p>Email: <span id="userEmail">Loading...</span></p>
+  <div class="dashboard-head">
+    <div>
+      <div class="badge"><span></span> Verified account</div>
+      <h1 style="margin-top:22px;">Your NexPay <br><strong>Dashboard</strong></h1>
+      <p>
+        Review your account, selected plan and card status. Full card details unlock after payment confirmation.
+      </p>
     </div>
 
-    <div class="feature-card">
-      <i class="fa-solid fa-credit-card"></i>
-      <h3>Selected Plan</h3>
-      <p id="selectedPlan">No plan selected</p>
-    </div>
-
-    <div class="feature-card">
-      <i class="fa-solid fa-receipt"></i>
-      <h3>Transactions</h3>
-      <p>No transactions yet.</p>
+    <div class="status-pill">
+      <span></span> Payment Pending
     </div>
   </div>
-</section>
+
+  <section class="dash-grid">
+    <div class="clean-card">
+      <h2>Account Details</h2>
+
+      <div class="profile-line">
+        <span>Name</span>
+        <strong id="userName">Loading...</strong>
+      </div>
+
+      <div class="profile-line">
+        <span>Email</span>
+        <strong id="userEmail">Loading...</strong>
+      </div>
+
+      <div class="profile-line">
+        <span>Selected Plan</span>
+        <strong id="selectedPlan">No plan selected</strong>
+      </div>
+
+      <div class="profile-line">
+        <span>Payment Status</span>
+        <strong style="color:#ffcc66;">Pending</strong>
+      </div>
+
+      <div class="profile-line">
+        <span>Card Status</span>
+        <strong style="color:#ffcc66;">Reserved</strong>
+      </div>
+
+      <div class="action-row">
+        <a href="pricing.html" class="primary-btn">Complete Payment <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="contact.html" class="secondary-btn">Need Help <i class="fa-solid fa-headset"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <div class="virtual-card-preview">
+        <div class="vc-content">
+          <div class="vc-top">
+            <div>
+              <h2>NexPay</h2>
+              <p class="vc-label" id="cardPlanLabel">Virtual Card</p>
+            </div>
+            <div class="vc-chip"></div>
+          </div>
+
+          <div>
+            <p class="vc-label">Card Number</p>
+            <div class="vc-number" id="maskedCardNumber">**** **** **** 8294</div>
+          </div>
+
+          <div class="vc-bottom">
+            <div>
+              <p class="vc-label">Card Holder</p>
+              <h4 id="cardHolder">NEXPAY USER</h4>
+            </div>
+
+            <div style="text-align:right;">
+              <p class="vc-label">CVV</p>
+              <h4>***</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lock-note">
+        <strong>Card details locked:</strong>
+        Your full card number, CVV and expiry will be visible only after payment is completed and verified.
+      </div>
+    </div>
+  </section>
+
+  <section class="info-grid">
+    <div class="info-box">
+      <p>Available Balance</p>
+      <h3>$0.00</h3>
+    </div>
+
+    <div class="info-box">
+      <p>This Month Spent</p>
+      <h3>$0.00</h3>
+    </div>
+
+    <div class="info-box">
+      <p>Transactions</p>
+      <h3>0</h3>
+    </div>
+  </section>
+
+  <section class="transaction-empty">
+    <i class="fa-solid fa-receipt"></i>
+    <h3>No Transactions Yet</h3>
+    <p>Your transactions will appear here after payment and card activation.</p>
+  </section>
+
+</main>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
@@ -105,6 +407,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+function generateLast4(email){
+  let total = 0;
+  for(let i = 0; i < email.length; i++){
+    total += email.charCodeAt(i);
+  }
+  return String((total % 9000) + 1000);
+}
+
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = "login.html";
@@ -121,16 +431,19 @@ onAuthStateChanged(auth, async (user) => {
   const name = user.displayName || localStorage.getItem("nexpay_name") || "NexPay User";
   const email = user.email || localStorage.getItem("nexpay_email") || "Not available";
   const plan = localStorage.getItem("selected_plan") || "No plan selected";
+  const last4 = generateLast4(email);
 
   localStorage.setItem("nexpay_logged_in", "true");
   localStorage.setItem("nexpay_email", email);
   localStorage.setItem("nexpay_name", name);
+  localStorage.setItem("nexpay_card_last4", last4);
 
   document.getElementById("userName").innerText = name;
-  document.getElementById("cardUser").innerText = name.toUpperCase();
   document.getElementById("userEmail").innerText = email;
   document.getElementById("selectedPlan").innerText = plan;
-  document.getElementById("cardPlan").innerText = plan;
+  document.getElementById("cardHolder").innerText = name.toUpperCase();
+  document.getElementById("cardPlanLabel").innerText = plan === "No plan selected" ? "Virtual Card" : plan;
+  document.getElementById("maskedCardNumber").innerText = "**** **** **** " + last4;
 });
 
 document.getElementById("logoutBtn").addEventListener("click", async (e) => {
@@ -139,6 +452,7 @@ document.getElementById("logoutBtn").addEventListener("click", async (e) => {
   localStorage.removeItem("nexpay_logged_in");
   localStorage.removeItem("nexpay_email");
   localStorage.removeItem("nexpay_name");
+  localStorage.removeItem("nexpay_card_last4");
 
   await signOut(auth);
   window.location.href = "login.html";
