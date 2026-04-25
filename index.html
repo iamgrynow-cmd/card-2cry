@@ -4,10 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>NexPay | Crypto Cards</title>
-
 <link rel="stylesheet" href="style.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 
 <body>
@@ -29,7 +27,7 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- IMPORTANT ID -->
+  <!-- 🔥 ONLY CHANGE -->
   <div class="nav-btns" id="authButtons">
     <a href="login.html" class="login">Log in</a>
     <a href="signup.html" class="signup">Sign up</a>
@@ -43,7 +41,7 @@
   <a href="about.html">About</a>
   <a href="virtual-cards.html">Virtual Cards</a>
   <a href="physical-cards.html">Physical Cards</a>
-  <a href="api-access.html">API</a>
+  <a href="api-access.html">API Access</a>
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
@@ -52,11 +50,10 @@
 </div>
 
 <main class="hero">
-
   <section class="hero-left">
     <div class="badge">Crypto funded cards</div>
     <h1>Create a secure <br><strong>crypto card.</strong></h1>
-    <p>Fund your card with crypto and spend globally.</p>
+    <p>Fund your card with crypto, manage spending from one dashboard.</p>
 
     <div class="hero-actions">
       <a href="signup.html" class="primary-btn">Create Account</a>
@@ -67,50 +64,41 @@
   <section class="hero-right">
     <div class="card">
       <div class="card-top">
-        <h2>NexPay</h2>
+        <div><h2>NexPay</h2><p>Elite Black</p></div>
       </div>
 
       <div class="card-number">•••• 8294</div>
 
       <div class="card-bottom">
-        <div>
-          <small>Card Holder</small>
-          <h4 id="cardName">NEXPAY USER</h4>
-        </div>
-        <div>
-          <small>Status</small>
-          <h4 class="active">ACTIVE</h4>
-        </div>
+        <div><small>Card Holder</small><h4 id="cardName">NEXPAY USER</h4></div>
+        <div><small>Status</small><h4 class="active">ACTIVE</h4></div>
       </div>
     </div>
   </section>
-
 </main>
 
-<!-- PRICING SECTION -->
+<!-- 🔥 PRICING FIX -->
 <section class="features">
   <h2>Choose Your Card</h2>
 
   <div class="feature-grid">
-
     <div class="feature-card">
       <h3>Visa Card</h3>
       <h2>$29</h2>
-      <p>Basic online usage</p>
+      <p>Perfect for everyday online spending.</p>
 
-      <!-- FIXED -->
+      <!-- 🔥 CHANGE -->
       <a href="payment.html" class="primary-btn">View Plans</a>
     </div>
 
     <div class="feature-card">
       <h3>Mastercard</h3>
       <h2>$59</h2>
-      <p>Premium usage</p>
+      <p>Premium card option.</p>
 
-      <!-- FIXED -->
+      <!-- 🔥 CHANGE -->
       <a href="payment.html" class="primary-btn">View Plans</a>
     </div>
-
   </div>
 </section>
 
@@ -123,12 +111,12 @@
 const menuToggle=document.getElementById("menuToggle");
 const mobileMenu=document.getElementById("mobileMenu");
 
-menuToggle.onclick=()=>{
+menuToggle.addEventListener("click",()=>{
   mobileMenu.classList.toggle("active");
-};
+});
 </script>
 
-<!-- FIREBASE AUTH -->
+<!-- 🔥 FIREBASE AUTH (ADD ONLY) -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
@@ -161,7 +149,6 @@ onAuthStateChanged(auth, (user) => {
       await signOut(auth);
       location.reload();
     };
-
   }
 
 });
