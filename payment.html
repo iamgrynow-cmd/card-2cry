@@ -116,7 +116,7 @@ function payNow(){
   alert("Payment Success 🚀\nTotal: $" + total);
 
   // redirect dashboard
-  window.location.href = "dashboard.html";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";  const auth = getAuth();  if(auth.currentUser){   window.location.href = "dashboard.html"; }else{   window.location.href = "login.html"; }
 }
 </script>
 
