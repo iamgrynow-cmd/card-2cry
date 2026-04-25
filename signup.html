@@ -1,136 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>NexPay | Sign Up</title>
-<link rel="stylesheet" href="style.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signup</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<header class="nav">
-  <a class="logo" href="index.html">
-    <div class="logo-icon">⚡</div>
-    <div>
-      <h2>NexPay</h2>
-      <p>Crypto Cards</p>
-    </div>
-  </a>
 
-  <nav class="desktop-nav">
-    <a href="virtual-cards.html">Virtual Cards</a>
-    <a href="physical-cards.html">Physical Cards</a>
-    <a href="api-access.html">API Access</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="faq.html">FAQ</a>
-  </nav>
+<div class="auth-box">
+  <h2>Create Account</h2>
 
-  <div class="nav-btns">
-    <a href="login.html" class="login">Log in</a>
-    <a href="signup.html" class="signup">Sign up</a>
-  </div>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
 
-  <button class="menu-toggle" id="menuToggle">
-    <i class="fa-solid fa-bars"></i>
-  </button>
-</header>
+  <button onclick="signup()">Sign Up</button>
+  <p id="msg"></p>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="virtual-cards.html">Virtual Cards</a>
-  <a href="physical-cards.html">Physical Cards</a>
-  <a href="api-access.html">API Access</a>
-  <a href="pricing.html">Pricing</a>
-  <a href="faq.html">FAQ</a>
-  <a href="login.html">Log in</a>
-  <a href="signup.html" class="mobile-signup">Sign up</a>
+  <p>Already have account? <a href="login.html">Login</a></p>
 </div>
 
-<main class="hero">
-  <section class="hero-left">
-    <div class="badge"><span></span> Create account</div>
-
-    <h1>
-      Start your <br />
-      <strong>NexPay journey.</strong>
-    </h1>
-
-    <p>
-      Create your account first. After signup, you can choose a plan and access your dashboard.
-    </p>
-  </section>
-
-  <section class="hero-right">
-    <div class="glow"></div>
-
-    <form class="feature-card" id="signupForm" style="width:min(430px,100%); position:relative; z-index:2;">
-      <i class="fa-solid fa-user-plus"></i>
-      <h3>Create Account</h3>
-      <p>Enter your details to create a demo account.</p>
-
-      <input id="fullName" type="text" placeholder="Full name" required
-        style="width:100%; margin-top:20px; padding:16px; border-radius:16px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.35); color:#fff; outline:none;">
-
-      <input id="email" type="email" placeholder="Email address" required
-        style="width:100%; margin-top:14px; padding:16px; border-radius:16px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.35); color:#fff; outline:none;">
-
-      <input id="password" type="password" placeholder="Password" required
-        style="width:100%; margin-top:14px; padding:16px; border-radius:16px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.35); color:#fff; outline:none;">
-
-      <button type="submit" class="primary-btn" style="width:100%; margin-top:18px;">
-        Create Account <i class="fa-solid fa-arrow-right"></i>
-      </button>
-
-      <p id="signupMsg" style="display:none; margin-top:16px; padding:14px; border-radius:16px; background:rgba(66,232,155,.12); color:#42e89b;">
-        Account created. Redirecting...
-      </p>
-
-      <p style="margin-top:18px; text-align:center;">
-        Already have an account?
-        <a href="login.html" style="color:#d8b45d; font-weight:800;">Log in</a>
-      </p>
-    </form>
-  </section>
-</main>
-
-<footer>
-  <p>© 2026 NexPay. Demo crypto card website.</p>
-</footer>
+<script type="module" src="firebase.js"></script>
 
 <script>
-const menuToggle = document.getElementById("menuToggle");
-const mobileMenu = document.getElementById("mobileMenu");
+async function signup() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-menuToggle.addEventListener("click", () => {
-  mobileMenu.classList.toggle("active");
-  const icon = menuToggle.querySelector("i");
-  icon.classList.toggle("fa-bars");
-  icon.classList.toggle("fa-xmark");
-});
+  try {
+    const userCred = await createUserWithEmailAndPassword(auth, email, password);
 
-const signupForm = document.getElementById("signupForm");
-const signupMsg = document.getElementById("signupMsg");
+    await sendEmailVerification(userCred.user);
 
-signupForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+    document.getElementById("msg").innerText = 
+      "Verification email sent. Check your inbox.";
 
-  const user = {
-    name: document.getElementById("fullName").value.trim(),
-    email: document.getElementById("email").value.trim(),
-    password: document.getElementById("password").value,
-    createdAt: new Date().toISOString()
-  };
+    setTimeout(()=>{
+      window.location.href = "login.html";
+    },2000);
 
-  localStorage.setItem("nexpay_user", JSON.stringify(user));
-  localStorage.setItem("isLoggedIn", "true");
-
-  signupMsg.style.display = "block";
-
-  setTimeout(() => {
-    window.location.href = "pricing.html";
-  }, 900);
-});
+  } catch (err) {
+    document.getElementById("msg").innerText = err.message;
+  }
+}
 </script>
+
 </body>
 </html>
