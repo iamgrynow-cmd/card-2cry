@@ -4,37 +4,95 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>NexPay | Pricing Plans</title>
+
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 
 <body>
+
 <header class="nav">
-  <a class="logo" href="index.html"><div class="logo-icon">⚡</div><div><h2>NexPay</h2><p>Crypto Cards</p></div></a>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">⚡</div>
+    <div>
+      <h2>NexPay</h2>
+      <p>Crypto Cards</p>
+    </div>
+  </a>
+
   <nav class="desktop-nav">
-    <a href="index.html">Home</a><a href="about.html">About</a><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="virtual-cards.html">Virtual Cards</a>
+    <a href="physical-cards.html">Physical Cards</a>
+    <a href="api-access.html">API</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
   </nav>
-  <div class="nav-btns"><a href="login.html" class="login">Log in</a><a href="signup.html" class="signup">Sign up</a></div>
-  <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+
+  <div class="nav-btns" id="navBtns">
+    <a href="login.html" class="login">Log in</a>
+    <a href="signup.html" class="signup">Sign up</a>
+  </div>
+
+  <button class="menu-toggle" id="menuToggle">
+    <i class="fa-solid fa-bars"></i>
+  </button>
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="index.html">Home</a><a href="about.html">About</a><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a><a href="login.html">Log in</a><a href="signup.html" class="mobile-signup">Sign up</a>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="virtual-cards.html">Virtual Cards</a>
+  <a href="physical-cards.html">Physical Cards</a>
+  <a href="api-access.html">API Access</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html">Log in</a>
+  <a href="signup.html" class="mobile-signup">Sign up</a>
 </div>
 
 <main class="hero">
   <section class="hero-left">
     <div class="badge"><span></span> Choose card plan</div>
-    <h1>Choose your <br><strong>NexPay card.</strong></h1>
-    <p>Select a card plan. If you have an account, login first. If you are already logged in, you will go to dashboard.</p>
+
+    <h1>
+      Choose your <br>
+      <strong>NexPay card.</strong>
+    </h1>
+
+    <p>
+      Select your card plan. If you are logged in, you will continue to payment.
+      If not, you will be asked to login first.
+    </p>
   </section>
 
   <section class="hero-right">
     <div class="glow"></div>
+
     <div class="card">
-      <div class="card-top"><div><h2>NexPay</h2><p>Pricing</p></div><div class="chip"></div></div>
+      <div class="card-top">
+        <div>
+          <h2>NexPay</h2>
+          <p>Pricing</p>
+        </div>
+        <div class="chip"></div>
+      </div>
+
       <div class="card-number">$29 • $59</div>
-      <div class="card-bottom"><div><small>Starting</small><h4>$29</h4></div><div><small>Status</small><h4 class="active">OPEN</h4></div></div>
+
+      <div class="card-bottom">
+        <div>
+          <small>Starting</small>
+          <h4>$29</h4>
+        </div>
+        <div>
+          <small>Status</small>
+          <h4 class="active">OPEN</h4>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -45,52 +103,144 @@
 
   <div class="feature-grid">
     <div class="feature-card">
-      <i class="fa-brands fa-cc-visa"></i><h3>Visa Card</h3>
+      <i class="fa-brands fa-cc-visa"></i>
+      <h3>Visa Card</h3>
       <h2 style="font-size:44px;margin:12px 0;color:#d8b45d;">$29</h2>
-      <p>Perfect for everyday online spending.</p>
-      <button onclick="handlePlanClick('Visa Card - $29')" class="primary-btn" style="margin-top:22px;width:100%;">Get Visa Card</button>
+      <p>Perfect for everyday online spending, shopping and subscriptions.</p>
+
+      <button onclick="handlePlanClick('Visa Card - $29', 29)" class="primary-btn" style="margin-top:22px;width:100%;">
+        Get Visa Card
+      </button>
     </div>
 
     <div class="feature-card" style="border:1px solid rgba(216,180,93,.55);box-shadow:0 0 70px rgba(216,180,93,.18);">
-      <i class="fa-brands fa-cc-mastercard"></i><h3>Mastercard</h3>
+      <i class="fa-brands fa-cc-mastercard"></i>
+      <h3>Mastercard</h3>
       <h2 style="font-size:44px;margin:12px 0;color:#d8b45d;">$59</h2>
-      <p>Premium option with higher limits.</p>
-      <button onclick="handlePlanClick('Mastercard - $59')" class="primary-btn" style="margin-top:22px;width:100%;">Get Mastercard</button>
+      <p>Premium option with higher limits and advanced card controls.</p>
+
+      <button onclick="handlePlanClick('Mastercard - $59', 59)" class="primary-btn" style="margin-top:22px;width:100%;">
+        Get Mastercard
+      </button>
     </div>
 
     <div class="feature-card">
-      <i class="fa-solid fa-building"></i><h3>Business Access</h3>
+      <i class="fa-solid fa-building"></i>
+      <h3>Business Access</h3>
       <h2 style="font-size:44px;margin:12px 0;color:#d8b45d;">Custom</h2>
-      <p>For agencies, teams and high-volume usage.</p>
-      <button onclick="window.location.href='contact.html'" class="secondary-btn" style="margin-top:22px;width:100%;">Contact Sales</button>
+      <p>For agencies, teams and high-volume card usage.</p>
+
+      <button onclick="window.location.href='contact.html'" class="secondary-btn" style="margin-top:22px;width:100%;">
+        Contact Sales
+      </button>
     </div>
   </div>
 </section>
 
 <footer class="luxury-footer">
   <div class="footer-wrap">
-    <div class="footer-brand"><a class="logo footer-logo" href="index.html"><div class="logo-icon">⚡</div><div><h2>NexPay</h2><p>Crypto Cards</p></div></a><p>NexPay is a premium digital finance platform for virtual cards, crypto-powered spending, business payments and global online transactions.</p></div>
-    <div class="footer-col"><h4>Platform</h4><a href="virtual-cards.html">Virtual Cards</a><a href="physical-cards.html">Physical Cards</a><a href="api-access.html">API Access</a><a href="pricing.html">Pricing</a></div>
-    <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a><a href="careers.html">Careers</a></div>
-    <div class="footer-col"><h4>Support</h4><a href="faq.html">FAQ</a><a href="help-center.html">Help Center</a><a href="live-status.html">Live Status</a><a href="security.html">Security</a></div>
-    <div class="footer-col"><h4>Legal</h4><a href="terms.html">Terms</a><a href="privacy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="risk-disclosure.html">Risk Disclosure</a></div>
+    <div class="footer-brand">
+      <a class="logo footer-logo" href="index.html">
+        <div class="logo-icon">⚡</div>
+        <div>
+          <h2>NexPay</h2>
+          <p>Crypto Cards</p>
+        </div>
+      </a>
+      <p>NexPay is a premium digital finance platform for virtual cards, crypto-powered spending, business payments and global online transactions.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="virtual-cards.html">Virtual Cards</a>
+      <a href="physical-cards.html">Physical Cards</a>
+      <a href="api-access.html">API Access</a>
+      <a href="pricing.html">Pricing</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="blog.html">Blog</a>
+      <a href="careers.html">Careers</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="faq.html">FAQ</a>
+      <a href="help-center.html">Help Center</a>
+      <a href="live-status.html">Live Status</a>
+      <a href="security.html">Security</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+      <a href="risk-disclosure.html">Risk Disclosure</a>
+    </div>
   </div>
-  <div class="footer-bottom"><p>© 2026 NexPay. All rights reserved.</p><p>Premium crypto-card experience for the next generation of digital payments.</p></div>
+
+  <div class="footer-bottom">
+    <p>© 2026 NexPay. All rights reserved.</p>
+    <p>Premium crypto-card experience for the next generation of digital payments.</p>
+  </div>
 </footer>
 
 <script>
-const menuToggle=document.getElementById("menuToggle");
-const mobileMenu=document.getElementById("mobileMenu");
-menuToggle.addEventListener("click",()=>{mobileMenu.classList.toggle("active");const icon=menuToggle.querySelector("i");icon.classList.toggle("fa-bars");icon.classList.toggle("fa-xmark");});
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
 
-function handlePlanClick(plan){
-  localStorage.setItem("selected_plan",plan);
-  const user=localStorage.getItem("nexpay_user");
-  const isLoggedIn=localStorage.getItem("isLoggedIn");
-  if(!user){window.location.href="signup.html";}
-  else if(user && isLoggedIn!=="true"){window.location.href="login.html";}
-  else{window.location.href="dashboard.html";}
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("active");
+    const icon = menuToggle.querySelector("i");
+    icon.classList.toggle("fa-bars");
+    icon.classList.toggle("fa-xmark");
+  });
 }
+
+function isUserLoggedIn() {
+  return (
+    localStorage.getItem("nexpay_logged_in") === "true" &&
+    localStorage.getItem("nexpay_email")
+  );
+}
+
+function updateNavForLogin() {
+  const navBtns = document.getElementById("navBtns");
+
+  if (isUserLoggedIn() && navBtns) {
+    navBtns.innerHTML = `
+      <a href="dashboard.html" class="login">Dashboard</a>
+      <a href="#" class="signup" onclick="signOutLocal()">Sign out</a>
+    `;
+  }
+}
+
+function signOutLocal() {
+  localStorage.removeItem("nexpay_logged_in");
+  localStorage.removeItem("nexpay_email");
+  localStorage.removeItem("nexpay_name");
+  window.location.href = "login.html";
+}
+
+function handlePlanClick(planName, planAmount) {
+  localStorage.setItem("selected_plan", planName);
+  localStorage.setItem("selected_plan_amount", String(planAmount));
+
+  if (isUserLoggedIn()) {
+    window.location.href = "payment.html";
+  } else {
+    localStorage.setItem("redirect_after_login", "payment.html");
+    window.location.href = "login.html";
+  }
+}
+
+updateNavForLogin();
 </script>
+
 </body>
 </html>
