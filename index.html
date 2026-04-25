@@ -1,86 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NexPay | Crypto Cards</title>
-
-<link rel="stylesheet" href="./style.css?v=7" />
-
+<meta charset="UTF-8">
+<title>NexPay</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="nav">
-  <div class="logo">
-    <div class="logo-icon">⚡</div>
-    <div>
-      <h2>NexPay</h2>
-      <p>Crypto Cards</p>
-    </div>
-  </div>
+<div class="nav">
+  <div class="logo">⚡ NexPay</div>
 
-  <nav class="desktop-nav">
+  <div class="nav-links">
     <a href="#">Home</a>
     <a href="#">Pricing</a>
     <a href="#">Contact</a>
-  </nav>
-
-  <div class="nav-btns">
-    <a href="login.html" class="login">Log in</a>
-    <a href="signup.html" class="signup">Sign up</a>
   </div>
 
-  <button class="menu-toggle" id="menuToggle">☰</button>
-</header>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#">Home</a>
-  <a href="#">Pricing</a>
-  <a href="#">Contact</a>
-  <a href="login.html">Log in</a>
-  <a href="signup.html">Sign up</a>
+  <div id="auth-buttons">
+    <a href="login.html" class="btn ghost">Log in</a>
+    <a href="signup.html" class="btn gold">Sign up</a>
+  </div>
 </div>
 
-<main class="hero">
-  <section class="hero-left">
+<section class="hero">
+  <div class="hero-left">
     <h1>Create a secure <br><span>crypto card.</span></h1>
     <p>Premium virtual cards for global payments.</p>
 
-    <div class="hero-actions">
-      <a href="signup.html" class="primary-btn">Create Account →</a>
-      <a href="#" class="secondary-btn">Explore Cards</a>
+    <div class="hero-buttons">
+      <a href="signup.html" class="btn gold">Create Account</a>
     </div>
-  </section>
+  </div>
 
-  <section class="hero-right">
-    <div class="card">
-      <div class="card-top">
-        <h2>NexPay</h2>
-      </div>
-
-      <div class="card-number">•••• 8294</div>
+  <div class="hero-right">
+    <div class="card-ui">
+      <h3>NexPay</h3>
+      <p class="card-number">•••• 8294</p>
 
       <div class="card-bottom">
         <div>
           <small>Holder</small>
-          <h4>NEXPAY USER</h4>
+          <p id="card-name">NEXPAY USER</p>
         </div>
         <div>
           <small>Status</small>
-          <h4 class="active">ACTIVE</h4>
+          <p class="active">ACTIVE</p>
         </div>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 
-<script>
-const menuToggle=document.getElementById("menuToggle");
-const mobileMenu=document.getElementById("mobileMenu");
+<script type="module">
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { app } from "./firebase-config.js";
 
-menuToggle.onclick=()=>{
-  mobileMenu.classList.toggle("active");
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById("auth-buttons").innerHTML = `
+      <a href="dashboard.html" class="btn gold">Dashboard</a>
+      <button onclick="logout()" class="btn ghost">Logout</button>
+    `;
+
+    let name = user.displayName || user.email.split("@")[0];
+    document.getElementById("card-name").innerText = name.toUpperCase();
+
+  } else {
+    document.getElementById("auth-buttons").innerHTML = `
+      <a href="login.html" class="btn ghost">Log in</a>
+      <a href="signup.html" class="btn gold">Sign up</a>
+    `;
+  }
+});
+
+window.logout = async () => {
+  await signOut(auth);
+  location.reload();
 };
 </script>
 
