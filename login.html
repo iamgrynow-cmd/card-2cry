@@ -33,8 +33,13 @@
 <main class="hero">
   <section class="hero-left">
     <div class="badge"><span></span> Secure login</div>
+
     <h1>Login to your <br><strong>NexPay account.</strong></h1>
-    <p>Login only works after your email is verified.</p>
+
+    <p>
+      Login works only after your email verification is complete.
+      Enter your verified email and password to continue.
+    </p>
   </section>
 
   <section class="hero-right">
@@ -43,7 +48,7 @@
     <form class="feature-card" id="loginForm" style="width:min(430px,100%);position:relative;z-index:2;">
       <i class="fa-solid fa-user-lock"></i>
       <h3>Log In</h3>
-      <p>Enter your verified email and password.</p>
+      <p>Use your verified email and password.</p>
 
       <input id="email" type="email" placeholder="Email address" required
       style="width:100%;margin-top:20px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;">
@@ -51,11 +56,15 @@
       <input id="password" type="password" placeholder="Password" required
       style="width:100%;margin-top:14px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;">
 
-      <button type="submit" class="primary-btn" style="width:100%;margin-top:18px;">
+      <button type="submit" class="primary-btn" id="loginBtn" style="width:100%;margin-top:18px;">
         Log In <i class="fa-solid fa-arrow-right"></i>
       </button>
 
-      <p id="msg" style="margin-top:16px;color:#d8b45d;font-weight:800;"></p>
+      <button type="button" id="resendBtn" class="secondary-btn" style="width:100%;margin-top:12px;display:none;">
+        Resend Verification Email
+      </button>
+
+      <p id="msg" style="margin-top:16px;font-weight:800;line-height:1.5;"></p>
 
       <p style="margin-top:18px;text-align:center;">
         No account?
@@ -66,13 +75,33 @@
 </main>
 
 <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import {
-  auth,
-  signInWithEmailAndPassword
-} from "./firebase.js";
+  getAuth,
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDGwpH-JYuYK4kkUpf3cCsp-Im4urQW9Lk",
+  authDomain: "nexpay-crypto-card.firebaseapp.com",
+  projectId: "nexpay-crypto-card",
+  storageBucket: "nexpay-crypto-card.firebasestorage.app",
+  messagingSenderId: "120822872109",
+  appId: "1:120822872109:web:9079b4cf4f0cade9c620a4",
+  measurementId: "G-KQE5VRLX4F"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 const form = document.getElementById("loginForm");
 const msg = document.getElementById("msg");
+const loginBtn = document.getElementById("loginBtn");
+const resendBtn = document.getElementById("resendBtn");
+
+let currentUnverifiedUser = null;
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -80,21 +109,71 @@ form.addEventListener("submit", async (e) => {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
 
+  msg.style.color = "#d8b45d";
+  msg.innerText = "Checking account...";
+  loginBtn.disabled = true;
+  loginBtn.innerText = "Please wait...";
+  resendBtn.style.display = "none";
+
   try {
     const userCred = await signInWithEmailAndPassword(auth, email, password);
+    await userCred.user.reload();
 
     if (!userCred.user.emailVerified) {
+      currentUnverifiedUser = userCred.user;
+
       msg.style.color = "#ffcc66";
-      msg.innerText = "Please verify your email first.";
+      msg.innerText = "⚠️ Email not verified. Please verify your email first.";
+      resendBtn.style.display = "inline-flex";
+
+      await signOut(auth);
+
+      loginBtn.disabled = false;
+      loginBtn.innerHTML = 'Log In <i class="fa-solid fa-arrow-right"></i>';
       return;
     }
 
     msg.style.color = "#42e89b";
-    msg.innerText = "Login successful. Redirecting...";
+    msg.innerText = "✅ Login successful. Redirecting...";
 
     setTimeout(() => {
-      window.location.href = "pricing.html";
-    }, 800);
+      const selectedPlan = localStorage.getItem("selected_plan");
+      window.location.href = selectedPlan ? "dashboard.html" : "pricing.html";
+    }, 700);
+
+  } catch (error) {
+    loginBtn.disabled = false;
+    loginBtn.innerHTML = 'Log In <i class="fa-solid fa-arrow-right"></i>';
+
+    if (error.code === "auth/invalid-credential") {
+      msg.style.color = "#ff8080";
+      msg.innerText = "Invalid email or password.";
+    } else if (error.code === "auth/user-not-found") {
+      msg.style.color = "#ff8080";
+      msg.innerText = "No account found. Please signup first.";
+    } else {
+      msg.style.color = "#ff8080";
+      msg.innerText = error.message;
+    }
+  }
+});
+
+resendBtn.addEventListener("click", async () => {
+  try {
+    if (!currentUnverifiedUser) {
+      msg.style.color = "#ff8080";
+      msg.innerText = "Please enter your email and password again.";
+      return;
+    }
+
+    await sendEmailVerification(currentUnverifiedUser, {
+      url: "https://iamgrynow-cmd.github.io/card-2cry/verify.html",
+      handleCodeInApp: true
+    });
+
+    msg.style.color = "#42e89b";
+    msg.innerText = "✅ Verification email sent again. Check inbox or spam.";
+    resendBtn.style.display = "none";
 
   } catch (error) {
     msg.style.color = "#ff8080";
