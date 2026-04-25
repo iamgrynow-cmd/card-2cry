@@ -4,11 +4,14 @@
 <meta charset="UTF-8">
 <title>NexPay</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="style.css?v=10">
+
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <div class="nav">
   <div class="logo">⚡ NexPay</div>
 
@@ -24,13 +27,16 @@
   </div>
 </div>
 
+<!-- HERO -->
 <section class="hero">
+
   <div class="hero-left">
     <h1>Create a secure <br><span>crypto card.</span></h1>
     <p>Premium virtual cards for global payments.</p>
 
     <div class="hero-buttons">
       <a href="signup.html" class="btn gold">Create Account</a>
+      <a href="#" class="btn dark">Explore Cards</a>
     </div>
   </div>
 
@@ -51,36 +57,58 @@
       </div>
     </div>
   </div>
+
 </section>
 
+<!-- FIREBASE SCRIPT -->
 <script type="module">
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { app } from "./firebase-config.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDGwpH-JYuYK4kkUpf3cCsp-Im4urQW9Lk",
+  authDomain: "nexpay-crypto-card.firebaseapp.com",
+  projectId: "nexpay-crypto-card",
+  storageBucket: "nexpay-crypto-card.firebasestorage.app",
+  messagingSenderId: "120822872109",
+  appId: "1:120822872109:web:9079b4cf4f0cade9c620a4"
+};
+
+const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-    document.getElementById("auth-buttons").innerHTML = `
+
+  const authBox = document.getElementById("auth-buttons");
+
+  if (user && user.emailVerified) {
+
+    authBox.innerHTML = `
       <a href="dashboard.html" class="btn gold">Dashboard</a>
-      <button onclick="logout()" class="btn ghost">Logout</button>
+      <button class="btn ghost" id="logoutBtn">Logout</button>
     `;
 
     let name = user.displayName || user.email.split("@")[0];
-    document.getElementById("card-name").innerText = name.toUpperCase();
+
+    const cardName = document.getElementById("card-name");
+    if(cardName){
+      cardName.innerText = name.toUpperCase();
+    }
+
+    document.getElementById("logoutBtn").onclick = async () => {
+      await signOut(auth);
+      location.reload();
+    };
 
   } else {
-    document.getElementById("auth-buttons").innerHTML = `
+
+    authBox.innerHTML = `
       <a href="login.html" class="btn ghost">Log in</a>
       <a href="signup.html" class="btn gold">Sign up</a>
     `;
   }
-});
 
-window.logout = async () => {
-  await signOut(auth);
-  location.reload();
-};
+});
 </script>
 
 </body>
