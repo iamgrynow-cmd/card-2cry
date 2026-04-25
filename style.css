@@ -1,9 +1,8 @@
-/* ===== RESET ===== */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 }
 
 body{
@@ -11,47 +10,67 @@ body{
   color:#fff;
 }
 
-/* ===== NAVBAR ===== */
+/* NAV */
 .nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 8%;
+  padding:16px 8%;
   position:fixed;
   width:100%;
   top:0;
   background:rgba(0,0,0,0.6);
-  backdrop-filter: blur(14px);
-  z-index:1000;
+  backdrop-filter:blur(10px);
 }
 
-.logo h2{
-  font-size:22px;
-  font-weight:600;
+.logo{
+  display:flex;
+  gap:10px;
 }
 
-.nav-links a{
-  margin:0 12px;
+.logo p{
+  font-size:12px;
+  color:#aaa;
+}
+
+/* LINKS */
+a{
   text-decoration:none;
   color:#aaa;
-  font-size:14px;
 }
 
-.nav-links a:hover{
+.desktop-nav a{
+  margin:0 10px;
+}
+
+.desktop-nav a:hover{
   color:#fff;
 }
 
-/* ===== HERO ===== */
+/* BUTTONS */
+.login{
+  padding:8px 14px;
+  border-radius:10px;
+  background:#111;
+}
+
+.signup{
+  padding:8px 14px;
+  border-radius:10px;
+  background:#d4af37;
+  color:#000;
+}
+
+/* HERO */
 .hero{
-  padding:140px 8% 80px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  padding:120px 8%;
 }
 
 .hero-left h1{
-  font-size:52px;
-  line-height:1.1;
+  font-size:48px;
 }
 
 .hero-left span{
@@ -59,200 +78,91 @@ body{
 }
 
 .hero-left p{
-  margin-top:20px;
+  margin-top:15px;
   color:#aaa;
-  font-size:16px;
-  max-width:500px;
 }
 
-/* ===== BUTTONS ===== */
-.primary-btn{
+.hero-actions{
   margin-top:20px;
-  padding:14px 20px;
-  border:none;
-  border-radius:16px;
+}
+
+.primary-btn{
   background:#d4af37;
+  padding:12px 18px;
+  border-radius:12px;
   color:#000;
-  font-weight:600;
-  cursor:pointer;
 }
 
 .secondary-btn{
-  margin-top:10px;
   padding:12px 18px;
-  border-radius:14px;
-  background:rgba(255,255,255,0.1);
-  border:none;
-  color:#fff;
-  cursor:pointer;
+  background:#111;
+  border-radius:12px;
 }
 
-/* ===== DASHBOARD ===== */
-.dashboard-wrap{
-  padding:120px 8% 60px;
+/* CARD */
+.card{
+  width:300px;
+  height:180px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#1c1c1e,#2c2c2e);
+  padding:20px;
 }
 
-.dashboard-head h1{
-  font-size:34px;
+.card-number{
+  margin-top:40px;
+  font-size:20px;
 }
 
-.dash-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
-  margin-top:30px;
-}
-
-/* ===== CARD ===== */
-.virtual-card-preview{
-  border-radius:30px;
-  padding:30px;
-  background: linear-gradient(145deg,#1c1c1e,#2c2c2e);
-  box-shadow:0 10px 40px rgba(0,0,0,0.8);
-}
-
-.vc-number{
-  font-size:22px;
-  letter-spacing:4px;
-  margin:40px 0;
-}
-
-/* ===== INFO CARD ===== */
-.clean-card{
-  background:rgba(255,255,255,0.05);
-  border-radius:26px;
-  padding:26px;
-}
-
-.profile-line{
+.card-bottom{
+  margin-top:20px;
   display:flex;
   justify-content:space-between;
-  margin:10px 0;
 }
 
-/* ===== INFO GRID ===== */
-.info-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
+.active{
+  color:#0f0;
 }
 
-.info-box{
-  background:rgba(255,255,255,0.05);
+/* MOBILE */
+.menu-toggle{
+  display:none;
+  background:none;
+  color:#fff;
+  font-size:20px;
+  border:none;
+}
+
+.mobile-menu{
+  display:none;
+  flex-direction:column;
+  background:#111;
   padding:20px;
-  border-radius:20px;
 }
 
-/* ===== TRANSACTION ===== */
-.transaction-empty{
-  padding:30px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.05);
-  text-align:center;
+.mobile-menu.active{
+  display:flex;
 }
 
-/* ========================= */
-/* 🍏 APPLE MOBILE UI */
-/* ========================= */
+@media(max-width:768px){
 
-@media (max-width:768px){
-
-  body{
-    background:#000;
+  .desktop-nav{
+    display:none;
   }
 
-  .nav{
-    padding:14px 18px;
+  .menu-toggle{
+    display:block;
   }
 
   .hero{
     flex-direction:column;
-    padding:100px 18px 40px;
-    text-align:left;
   }
 
   .hero-left h1{
-    font-size:30px;
+    font-size:28px;
   }
 
-  .hero-left p{
-    font-size:14px;
+  .card{
+    margin-top:30px;
+    width:100%;
   }
-
-  .dashboard-wrap{
-    padding:90px 16px 40px;
-  }
-
-  .dash-grid{
-    grid-template-columns:1fr;
-    gap:16px;
-  }
-
-  /* APPLE CARD */
-  .virtual-card-preview{
-    border-radius:28px;
-    padding:22px;
-    background: linear-gradient(145deg,#1c1c1e,#2c2c2e);
-    box-shadow:
-      0 8px 30px rgba(0,0,0,0.8),
-      inset 0 1px 0 rgba(255,255,255,0.06);
-  }
-
-  .vc-number{
-    font-size:18px;
-    margin:30px 0;
-  }
-
-  /* CLEAN CARDS */
-  .clean-card{
-    border-radius:24px;
-    padding:20px;
-    background:rgba(28,28,30,0.9);
-    backdrop-filter: blur(20px);
-  }
-
-  .profile-line{
-    flex-direction:column;
-    gap:4px;
-    border-bottom:1px solid rgba(255,255,255,0.05);
-    padding:10px 0;
-  }
-
-  .profile-line span{
-    font-size:12px;
-    color:#aaa;
-  }
-
-  .profile-line strong{
-    font-size:15px;
-  }
-
-  .info-grid{
-    grid-template-columns:1fr;
-  }
-
-  .info-box{
-    border-radius:18px;
-    padding:16px;
-    background:rgba(28,28,30,0.9);
-  }
-
-  .transaction-empty{
-    border-radius:20px;
-    padding:20px;
-    background:rgba(28,28,30,0.9);
-  }
-
-  /* BUTTON IOS STYLE */
-  .primary-btn{
-    background:#fff;
-    color:#000;
-    border-radius:14px;
-    padding:12px;
-  }
-
-  .secondary-btn{
-    background:rgba(255,255,255,0.08);
-  }
-
 }
