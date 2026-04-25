@@ -1,54 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Payment | NexPay</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NexPay | Payment</title>
+
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
 <style>
 .payment-container{
-  max-width:500px;
-  margin:120px auto;
-  background:#111;
+  max-width:600px;
+  margin:80px auto;
   padding:30px;
-  border-radius:16px;
+  background:#111;
+  border-radius:12px;
+  color:#fff;
 }
-
 .payment-container h2{
   margin-bottom:20px;
 }
-
-.plan{
-  display:flex;
-  justify-content:space-between;
-  margin:10px 0;
-  padding:12px;
-  background:#1a1a1f;
+.payment-box{
+  background:#1a1a1a;
+  padding:20px;
   border-radius:10px;
-  cursor:pointer;
+  margin-bottom:20px;
 }
-
-.plan.active{
-  border:1px solid gold;
-}
-
-.summary{
-  margin-top:20px;
-  padding:15px;
-  background:#1a1a1f;
-  border-radius:10px;
-}
-
-.pay-btn{
-  margin-top:20px;
+.payment-box select,
+.payment-box input{
   width:100%;
   padding:12px;
-  background:#f5c76b;
+  margin-top:10px;
   border:none;
-  border-radius:10px;
-  font-weight:600;
+  border-radius:6px;
+  background:#222;
+  color:#fff;
+}
+.pay-btn{
+  width:100%;
+  padding:14px;
+  background:#d8b45d;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
   cursor:pointer;
+  margin-top:15px;
+}
+.summary{
+  margin-top:15px;
+  font-size:14px;
+  color:#ccc;
 }
 </style>
 </head>
@@ -57,67 +58,64 @@
 
 <div class="payment-container">
 
-  <h2>Select Card Plan</h2>
+  <h2>💳 Buy Your Card</h2>
 
-  <div class="plan" onclick="selectPlan('basic',29)">
-    <span>Basic Card</span>
-    <strong>$29</strong>
+  <div class="payment-box">
+    
+    <label>Select Card Plan</label>
+    <select id="plan">
+      <option value="29">Visa Card - $29</option>
+      <option value="59">Mastercard - $59</option>
+    </select>
+
+    <label>Enter Crypto Amount ($)</label>
+    <input type="number" id="amount" placeholder="e.g. 100" />
+
+    <div class="summary" id="summary">
+      Total will appear here...
+    </div>
+
+    <button class="pay-btn" onclick="payNow()">Proceed Payment</button>
+
   </div>
-
-  <div class="plan" onclick="selectPlan('premium',59)">
-    <span>Premium Card</span>
-    <strong>$59</strong>
-  </div>
-
-  <div class="summary">
-    <p>Plan: <span id="planName">None</span></p>
-    <p>Fee: $<span id="planPrice">0</span></p>
-    <p>Crypto Load: $<span id="cryptoAmount">0</span></p>
-  </div>
-
-  <button class="pay-btn" onclick="payNow()">Pay Now</button>
 
 </div>
 
 <script>
-let selectedPlan = null;
-let price = 0;
+const plan = document.getElementById("plan");
+const amount = document.getElementById("amount");
+const summary = document.getElementById("summary");
 
-// plan select
-function selectPlan(plan, amount){
-  selectedPlan = plan;
-  price = amount;
+function updateSummary(){
+  let fee = parseInt(plan.value);
+  let load = parseInt(amount.value) || 0;
+  let total = fee + load;
 
-  document.getElementById("planName").innerText = plan;
-  document.getElementById("planPrice").innerText = amount;
-
-  // dummy crypto load logic
-  let cryptoLoad = amount * 10;
-  document.getElementById("cryptoAmount").innerText = cryptoLoad;
-
-  // UI highlight
-  document.querySelectorAll(".plan").forEach(p=>p.classList.remove("active"));
-  event.currentTarget.classList.add("active");
+  summary.innerHTML = `
+    Card Fee: $${fee} <br>
+    Crypto Load: $${load} <br>
+    <strong>Total Payment: $${total}</strong>
+  `;
 }
 
-// payment click
-function payNow(){
+plan.addEventListener("change", updateSummary);
+amount.addEventListener("input", updateSummary);
 
-  if(!selectedPlan){
-    alert("Select a plan first");
+function payNow(){
+  let fee = parseInt(plan.value);
+  let load = parseInt(amount.value) || 0;
+
+  if(load <= 0){
+    alert("Enter amount bro");
     return;
   }
 
-  // save user payment status
-  let user = JSON.parse(localStorage.getItem("user")) || {};
+  let total = fee + load;
 
-  user.isPaid = true;
-  user.plan = selectedPlan;
+  // 👇 future: yaha real payment add hoga
+  alert("Payment Success 🚀\nTotal: $" + total);
 
-  localStorage.setItem("user", JSON.stringify(user));
-
-  alert("Payment Successful (Demo)");
-
+  // redirect dashboard
   window.location.href = "dashboard.html";
 }
 </script>
