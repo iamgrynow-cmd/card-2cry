@@ -98,12 +98,27 @@
 </main>
 
 <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import {
-  auth,
+  getAuth,
   createUserWithEmailAndPassword,
   sendEmailVerification,
-  updateProfile
-} from "./firebase.js";
+  updateProfile,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDGwpH-JYuYK4kkUpf3cCsp-Im4urQW9Lk",
+  authDomain: "nexpay-crypto-card.firebaseapp.com",
+  projectId: "nexpay-crypto-card",
+  storageBucket: "nexpay-crypto-card.firebasestorage.app",
+  messagingSenderId: "120822872109",
+  appId: "1:120822872109:web:9079b4cf4f0cade9c620a4",
+  measurementId: "G-KQE5VRLX4F"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 const form = document.getElementById("signupForm");
 const msg = document.getElementById("msg");
@@ -117,7 +132,7 @@ form.addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
 
   msg.style.color = "#d8b45d";
-  msg.innerText = "Processing...";
+  msg.innerText = "Creating account...";
   signupBtn.disabled = true;
   signupBtn.innerText = "Please wait...";
 
@@ -129,8 +144,11 @@ form.addEventListener("submit", async (e) => {
     });
 
     await sendEmailVerification(userCred.user, {
-      url: "https://iamgrynow-cmd.github.io/card-2cry/verify.html"
+      url: "https://iamgrynow-cmd.github.io/card-2cry/verify.html",
+      handleCodeInApp: true
     });
+
+    await signOut(auth);
 
     msg.style.color = "#42e89b";
     msg.innerText = "✅ Verification email sent! Please check your inbox or spam folder.";
