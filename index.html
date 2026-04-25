@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
 <header class="nav">
   <a class="logo" href="index.html">
     <div class="logo-icon">⚡</div>
@@ -27,7 +26,7 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- 🔥 ONLY CHANGE -->
+  <!-- ✅ IMPORTANT CHANGE -->
   <div class="nav-btns" id="authButtons">
     <a href="login.html" class="login">Log in</a>
     <a href="signup.html" class="signup">Sign up</a>
@@ -45,13 +44,16 @@
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
+  <a href="developers.html">Developers</a>
+  <a href="docs.html">Docs</a>
+  <a href="security.html">Security</a>
   <a href="login.html">Log in</a>
-  <a href="signup.html">Sign up</a>
+  <a href="signup.html" class="mobile-signup">Sign up</a>
 </div>
 
 <main class="hero">
   <section class="hero-left">
-    <div class="badge">Crypto funded cards</div>
+    <div class="badge"><span></span> Crypto funded cards for global spending</div>
     <h1>Create a secure <br><strong>crypto card.</strong></h1>
     <p>Fund your card with crypto, manage spending from one dashboard.</p>
 
@@ -66,9 +68,7 @@
       <div class="card-top">
         <div><h2>NexPay</h2><p>Elite Black</p></div>
       </div>
-
-      <div class="card-number">•••• 8294</div>
-
+      <div class="card-number">•••• 8294 7710</div>
       <div class="card-bottom">
         <div><small>Card Holder</small><h4 id="cardName">NEXPAY USER</h4></div>
         <div><small>Status</small><h4 class="active">ACTIVE</h4></div>
@@ -77,46 +77,33 @@
   </section>
 </main>
 
-<!-- 🔥 PRICING FIX -->
+<!-- ✅ CHANGE: payment.html -->
 <section class="features">
   <h2>Choose Your Card</h2>
-
   <div class="feature-grid">
+
     <div class="feature-card">
       <h3>Visa Card</h3>
       <h2>$29</h2>
-      <p>Perfect for everyday online spending.</p>
-
-      <!-- 🔥 CHANGE -->
       <a href="payment.html" class="primary-btn">View Plans</a>
     </div>
 
     <div class="feature-card">
       <h3>Mastercard</h3>
       <h2>$59</h2>
-      <p>Premium card option.</p>
-
-      <!-- 🔥 CHANGE -->
       <a href="payment.html" class="primary-btn">View Plans</a>
     </div>
+
   </div>
 </section>
 
-<footer class="luxury-footer">
-  <p>© 2026 NexPay. All rights reserved.</p>
-</footer>
-
-<!-- MENU -->
 <script>
 const menuToggle=document.getElementById("menuToggle");
 const mobileMenu=document.getElementById("mobileMenu");
-
-menuToggle.addEventListener("click",()=>{
-  mobileMenu.classList.toggle("active");
-});
+menuToggle.addEventListener("click",()=>{mobileMenu.classList.toggle("active");});
 </script>
 
-<!-- 🔥 FIREBASE AUTH (ADD ONLY) -->
+<!-- 🔥 FIREBASE SCRIPT -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
@@ -132,14 +119,12 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 onAuthStateChanged(auth, (user) => {
-
   const box = document.getElementById("authButtons");
 
   if(user && user.emailVerified){
-
     box.innerHTML = `
-      <a href="dashboard.html" class="signup">Dashboard</a>
-      <button id="logoutBtn" class="login">Logout</button>
+      <a href="dashboard.html" class="login">Dashboard</a>
+      <button id="logoutBtn" class="signup">Logout</button>
     `;
 
     let name = user.displayName || user.email.split("@")[0];
@@ -150,7 +135,6 @@ onAuthStateChanged(auth, (user) => {
       location.reload();
     };
   }
-
 });
 </script>
 
