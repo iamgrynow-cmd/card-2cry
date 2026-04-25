@@ -67,7 +67,12 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDGwpH-JYuYK4kkUpf3cCsp-Im4urQW9Lk",
@@ -98,6 +103,8 @@ form.addEventListener("submit", async (e) => {
   loginBtn.innerText = "Please wait...";
 
   try {
+    await setPersistence(auth, browserLocalPersistence);
+
     const userCred = await signInWithEmailAndPassword(auth, email, password);
     await userCred.user.reload();
 
