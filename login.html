@@ -1,157 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>NexPay | Login</title>
-<link rel="stylesheet" href="style.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<header class="nav">
-  <a class="logo" href="index.html">
-    <div class="logo-icon">⚡</div>
-    <div>
-      <h2>NexPay</h2>
-      <p>Crypto Cards</p>
-    </div>
-  </a>
 
-  <nav class="desktop-nav">
-    <a href="index.html">Home</a>
-    <a href="virtual-cards.html">Virtual Cards</a>
-    <a href="physical-cards.html">Physical Cards</a>
-    <a href="api-access.html">API Access</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+<div class="auth-box">
+  <h2>Login</h2>
 
-  <div class="nav-btns">
-    <a href="login.html" class="login">Log in</a>
-    <a href="signup.html" class="signup">Sign up</a>
-  </div>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
 
-  <button class="menu-toggle" id="menuToggle">
-    <i class="fa-solid fa-bars"></i>
-  </button>
-</header>
+  <button onclick="login()">Login</button>
+  <p id="msg"></p>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html">Home</a>
-  <a href="virtual-cards.html">Virtual Cards</a>
-  <a href="physical-cards.html">Physical Cards</a>
-  <a href="api-access.html">API Access</a>
-  <a href="pricing.html">Pricing</a>
-  <a href="faq.html">FAQ</a>
-  <a href="contact.html">Contact</a>
-  <a href="login.html">Log in</a>
-  <a href="signup.html" class="mobile-signup">Sign up</a>
+  <p>No account? <a href="signup.html">Signup</a></p>
 </div>
 
-<main class="hero">
-  <section class="hero-left">
-    <div class="badge"><span></span> Secure login</div>
-
-    <h1>
-      Login to your <br />
-      <strong>NexPay account.</strong>
-    </h1>
-
-    <p>
-      Enter the same email and password you used during signup. After login,
-      choose your card plan or continue to your dashboard.
-    </p>
-  </section>
-
-  <section class="hero-right">
-    <div class="glow"></div>
-
-    <form class="feature-card" id="loginForm" style="width:min(430px,100%); position:relative; z-index:2;">
-      <i class="fa-solid fa-user-lock"></i>
-      <h3>Log In</h3>
-      <p>Access your NexPay account securely.</p>
-
-      <input id="email" type="email" placeholder="Email address" required
-        style="width:100%; margin-top:20px; padding:16px; border-radius:16px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.35); color:#fff; outline:none;">
-
-      <input id="password" type="password" placeholder="Password" required
-        style="width:100%; margin-top:14px; padding:16px; border-radius:16px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.35); color:#fff; outline:none;">
-
-      <button type="submit" class="primary-btn" style="width:100%; margin-top:18px;">
-        Log In <i class="fa-solid fa-arrow-right"></i>
-      </button>
-
-      <p id="loginMsg" style="display:none; margin-top:16px; padding:14px; border-radius:16px; background:rgba(66,232,155,.12); color:#42e89b;">
-        Login successful. Redirecting...
-      </p>
-
-      <p id="errorMsg" style="display:none; margin-top:16px; padding:14px; border-radius:16px; background:rgba(255,80,80,.12); color:#ff8080;">
-        Invalid email or password.
-      </p>
-
-      <p style="margin-top:18px; text-align:center;">
-        Don’t have an account?
-        <a href="signup.html" style="color:#d8b45d; font-weight:800;">Sign up</a>
-      </p>
-    </form>
-  </section>
-</main>
-
-<footer>
-  <p>© 2026 NexPay. All rights reserved.</p>
-</footer>
+<script type="module" src="firebase.js"></script>
 
 <script>
-const menuToggle = document.getElementById("menuToggle");
-const mobileMenu = document.getElementById("mobileMenu");
-
-menuToggle.addEventListener("click", () => {
-  mobileMenu.classList.toggle("active");
-  const icon = menuToggle.querySelector("i");
-  icon.classList.toggle("fa-bars");
-  icon.classList.toggle("fa-xmark");
-});
-
-const loginForm = document.getElementById("loginForm");
-const loginMsg = document.getElementById("loginMsg");
-const errorMsg = document.getElementById("errorMsg");
-
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const savedUser = JSON.parse(localStorage.getItem("nexpay_user"));
-  const email = document.getElementById("email").value.trim();
+async function login() {
+  const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  if (!savedUser) {
-    window.location.href = "signup.html";
-    return;
+  try {
+    const userCred = await signInWithEmailAndPassword(auth, email, password);
+
+    if (!userCred.user.emailVerified) {
+      document.getElementById("msg").innerText =
+        "Please verify your email first!";
+      return;
+    }
+
+    window.location.href = "dashboard.html";
+
+  } catch (err) {
+    document.getElementById("msg").innerText = err.message;
   }
-
-  if (savedUser.email === email && savedUser.password === password) {
-    localStorage.setItem("isLoggedIn", "true");
-
-    loginMsg.style.display = "block";
-    errorMsg.style.display = "none";
-
-    setTimeout(() => {
-      const selectedPlan = localStorage.getItem("selected_plan");
-
-      if (selectedPlan) {
-        window.location.href = "dashboard.html";
-      } else {
-        window.location.href = "pricing.html";
-      }
-    }, 800);
-
-  } else {
-    errorMsg.style.display = "block";
-    loginMsg.style.display = "none";
-  }
-});
+}
 </script>
+
 </body>
 </html>
