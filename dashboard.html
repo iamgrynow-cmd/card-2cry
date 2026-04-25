@@ -1,149 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NexPay Dashboard</title>
-
-<link rel="stylesheet" href="style.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
-<style>
-.dashboard{
-  max-width:1000px;
-  margin:60px auto;
-  padding:20px;
-  color:#fff;
-}
-.card-box{
-  background:#111;
-  padding:25px;
-  border-radius:12px;
-  margin-bottom:20px;
-}
-.balance{
-  font-size:32px;
-  color:#d8b45d;
-}
-.actions{
-  margin-top:15px;
-}
-.actions button{
-  padding:10px 18px;
-  margin-right:10px;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-}
-.add{background:#d8b45d;}
-.withdraw{background:#333;color:#fff;}
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | NexPay</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- NAV -->
-<header class="nav">
-  <a class="logo" href="index.html">
-    <div class="logo-icon">⚡</div>
-    <div><h2>NexPay</h2><p>Dashboard</p></div>
-  </a>
-
-  <div class="nav-btns" id="navUser"></div>
-</header>
-
-<!-- DASHBOARD -->
 <div class="dashboard">
 
-  <div class="card-box">
-    <h3>👋 Welcome, <span id="username">User</span></h3>
-    <p>Your crypto card balance</p>
-    <div class="balance" id="balance">$0</div>
+  <!-- TOP BAR -->
+  <div class="dash-top">
+    <h2>Welcome, <span id="user-name">User</span></h2>
+    <button onclick="logout()">Logout</button>
+  </div>
 
-    <div class="actions">
-      <button class="add" onclick="addFunds()">Add Funds</button>
-      <button class="withdraw">Withdraw</button>
+  <!-- CARD UI -->
+  <div class="card-ui">
+    <h3>NexPay</h3>
+    <p class="card-number" id="card-number">•••• **** 8294</p>
+
+    <div class="card-bottom">
+      <div>
+        <small>Holder</small>
+        <p id="card-holder">USER</p>
+      </div>
+      <div>
+        <small>Status</small>
+        <p class="active">ACTIVE</p>
+      </div>
     </div>
   </div>
 
-  <div class="card-box">
-    <h3>💳 Your Card</h3>
-    <p>Virtual Card Status: <b style="color:lightgreen;">ACTIVE</b></p>
-    <p>Card Number: **** 8294</p>
+  <!-- USER INFO -->
+  <div class="user-box">
+    <p><b>Email:</b> <span id="user-email"></span></p>
+    <p><b>Plan:</b> <span id="user-plan">Not Purchased</span></p>
   </div>
 
 </div>
 
-<!-- FIREBASE -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDGwpH-JYuYK4kkUpf3cCsp-Im4urQW9Lk",
-  authDomain: "nexpay-crypto-card.firebaseapp.com",
-  projectId: "nexpay-crypto-card",
-  appId: "1:120822872109:web:9079b4cf4f0cade9c620a4"
-};
+// 🔴 NOT LOGGED IN → REDIRECT
+if (!user) {
+  window.location.href = "login.html";
+}
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+// 🔥 DATA SET
+document.getElementById("user-name").innerText = user.name || "User";
+document.getElementById("card-holder").innerText = (user.name || "USER").toUpperCase();
 
-const username = document.getElementById("username");
-const balanceEl = document.getElementById("balance");
-const navUser = document.getElementById("navUser");
+// 🔥 EMAIL SHORT (IMPORTANT CHANGE)
+let email = user.email || "";
+let shortEmail = email.split("@")[0];
+document.getElementById("user-email").innerText = shortEmail + "@...";
 
-onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    window.location.href = "login.html";
-    return;
-  }
+// 🔥 CARD MASK LOGIC
+if (user.plan) {
+  document.getElementById("user-plan").innerText = user.plan;
 
-  let name = user.email.split("@")[0];
-  username.innerText = name;
+  // paid → show last 4
+  document.getElementById("card-number").innerText = "**** **** 8294";
+} else {
+  // unpaid → more hidden
+  document.getElementById("card-number").innerText = "**** **** ****";
+}
 
-  navUser.innerHTML = `
-    <span style="color:#d8b45d;">${name}</span>
-    <button id="logoutBtn" class="login">Logout</button>
-  `;
-
-  document.getElementById("logoutBtn").onclick = () => {
-    signOut(auth).then(()=>location.href="index.html");
-  };
-
-  // 🔥 USER DATA FETCH
-  const ref = doc(db, "users", user.uid);
-  const snap = await getDoc(ref);
-
-  if (!snap.exists()) {
-    await setDoc(ref, { balance: 0 });
-    balanceEl.innerText = "$0";
-  } else {
-    balanceEl.innerText = "$" + snap.data().balance;
-  }
-});
-
-// ➕ ADD FUNDS (dummy)
-window.addFunds = async function(){
-  const user = auth.currentUser;
-  let amount = prompt("Enter amount");
-
-  if(!amount) return;
-
-  amount = parseInt(amount);
-
-  const ref = doc(db, "users", user.uid);
-  const snap = await getDoc(ref);
-
-  let current = snap.data().balance || 0;
-  let newBalance = current + amount;
-
-  await setDoc(ref, { balance: newBalance });
-
-  balanceEl.innerText = "$" + newBalance;
-};
+// LOGOUT
+function logout(){
+  localStorage.removeItem("user");
+  window.location.href = "index.html";
+}
 </script>
 
 </body>
