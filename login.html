@@ -3,45 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
+<title>NexPay | Login</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+
 <body>
 
-<div class="auth-box">
-  <h2>Login</h2>
+<header class="nav">
+  <a class="logo" href="index.html">
+    <div class="logo-icon">⚡</div>
+    <div><h2>NexPay</h2><p>Crypto Cards</p></div>
+  </a>
 
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
+  <nav class="desktop-nav">
+    <a href="index.html">Home</a>
+    <a href="virtual-cards.html">Virtual Cards</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-  <button onclick="login()">Login</button>
-  <p id="msg"></p>
+  <div class="nav-btns">
+    <a href="login.html" class="login">Log in</a>
+    <a href="signup.html" class="signup">Sign up</a>
+  </div>
+</header>
 
-  <p>No account? <a href="signup.html">Signup</a></p>
-</div>
+<main class="hero">
+  <section class="hero-left">
+    <div class="badge"><span></span> Secure login</div>
+    <h1>Login to your <br><strong>NexPay account.</strong></h1>
+    <p>Login only works after your email is verified.</p>
+  </section>
 
-<script type="module" src="firebase.js"></script>
+  <section class="hero-right">
+    <div class="glow"></div>
 
-<script>
-async function login() {
-  const email = document.getElementById("email").value;
+    <form class="feature-card" id="loginForm" style="width:min(430px,100%);position:relative;z-index:2;">
+      <i class="fa-solid fa-user-lock"></i>
+      <h3>Log In</h3>
+      <p>Enter your verified email and password.</p>
+
+      <input id="email" type="email" placeholder="Email address" required
+      style="width:100%;margin-top:20px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;">
+
+      <input id="password" type="password" placeholder="Password" required
+      style="width:100%;margin-top:14px;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.35);color:#fff;outline:none;">
+
+      <button type="submit" class="primary-btn" style="width:100%;margin-top:18px;">
+        Log In <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <p id="msg" style="margin-top:16px;color:#d8b45d;font-weight:800;"></p>
+
+      <p style="margin-top:18px;text-align:center;">
+        No account?
+        <a href="signup.html" style="color:#d8b45d;font-weight:800;">Signup</a>
+      </p>
+    </form>
+  </section>
+</main>
+
+<script type="module">
+import {
+  auth,
+  signInWithEmailAndPassword
+} from "./firebase.js";
+
+const form = document.getElementById("loginForm");
+const msg = document.getElementById("msg");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
 
   try {
     const userCred = await signInWithEmailAndPassword(auth, email, password);
 
     if (!userCred.user.emailVerified) {
-      document.getElementById("msg").innerText =
-        "Please verify your email first!";
+      msg.style.color = "#ffcc66";
+      msg.innerText = "Please verify your email first.";
       return;
     }
 
-    window.location.href = "dashboard.html";
+    msg.style.color = "#42e89b";
+    msg.innerText = "Login successful. Redirecting...";
 
-  } catch (err) {
-    document.getElementById("msg").innerText = err.message;
+    setTimeout(() => {
+      window.location.href = "pricing.html";
+    }, 800);
+
+  } catch (error) {
+    msg.style.color = "#ff8080";
+    msg.innerText = error.message;
   }
-}
+});
 </script>
 
 </body>
