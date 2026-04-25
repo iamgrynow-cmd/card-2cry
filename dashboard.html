@@ -1,394 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NexPay | Dashboard</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
-
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:Inter,sans-serif}
-a{text-decoration:none;color:inherit}
-
-.header{
-  min-height:90px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 48px;
-  background:#050509;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  font-size:28px;
-  font-weight:900;
-}
-
-.logo-mark{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  background:linear-gradient(135deg,#fff0b0,#d8b45d,#9b6d20);
-  display:grid;
-  place-items:center;
-  color:#000;
-}
-
-.nav{
-  display:flex;
-  align-items:center;
-  gap:22px;
-  color:rgba(255,255,255,.68);
-  font-weight:800;
-  flex-wrap:wrap;
-}
-
-.nav a:hover{color:#d8b45d}
-
-.logout{
-  padding:12px 20px;
-  border-radius:999px;
-  background:#17171d;
-  border:1px solid rgba(255,255,255,.14);
-  font-weight:800;
-  cursor:pointer;
-  color:#fff;
-}
-
-.add-card{
-  padding:12px 20px;
-  border-radius:999px;
-  background:linear-gradient(135deg,#fff0b0,#d8b45d,#9b6d20);
-  color:#05060a !important;
-  font-weight:900;
-}
-
-.main{padding:50px 48px}
-
-h1{font-size:40px;margin-bottom:10px}
-
-.welcome{
-  color:rgba(255,255,255,.65);
-  font-size:20px;
-  margin-bottom:35px;
-}
-
-.dashboard-grid{
-  display:grid;
-  grid-template-columns:420px 1fr;
-  gap:28px;
-  align-items:start;
-}
-
-.card-ui{
-  width:100%;
-  min-height:250px;
-  border-radius:28px;
-  padding:28px;
-  background:
-    radial-gradient(circle at 25% 15%, rgba(216,180,93,.45), transparent 30%),
-    linear-gradient(135deg, #111, #1a1a1a, #020202);
-  border:1px solid rgba(255,255,255,.18);
-  box-shadow:0 40px 100px rgba(0,0,0,.6);
-}
-
-.card-ui-top,
-.card-ui-bottom{
-  display:flex;
-  justify-content:space-between;
-}
-
-.card-ui-top p,
-.card-ui small{
-  color:rgba(255,255,255,.45);
-  text-transform:uppercase;
-  font-size:10px;
-  letter-spacing:3px;
-}
-
-.chip{
-  width:58px;
-  height:42px;
-  border-radius:13px;
-  background:linear-gradient(135deg,#fff0b0,#d8b45d,#9b6d20);
-}
-
-.card-ui-number{
-  margin:52px 0;
-  font-family:monospace;
-  font-size:24px;
-  letter-spacing:6px;
-}
-
-.profile-card{
-  padding:28px;
-  border-radius:18px;
-  background:#17171d;
-  border:1px solid #2a3040;
-}
-
-.profile-card h2{
-  font-size:25px;
-  margin-bottom:20px;
-}
-
-.profile-card p{
-  font-size:18px;
-  color:rgba(255,255,255,.72);
-  margin:14px 0;
-}
-
-.gold{color:#d8b45d}
-
-.stats{
-  margin-top:28px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-.stat-box{
-  background:#17171d;
-  border:1px solid #2a3040;
-  border-radius:18px;
-  padding:24px;
-}
-
-.stat-box p{color:rgba(255,255,255,.55)}
-
-.stat-box h3{
-  font-size:28px;
-  margin-top:8px;
-}
-
-.table-wrap{
-  margin-top:34px;
-  width:100%;
-  overflow-x:auto;
-}
-
-table{
-  width:100%;
-  min-width:850px;
-  border-collapse:collapse;
-  background:#17171d;
-  border-radius:14px;
-  overflow:hidden;
-}
-
-th{
-  text-align:left;
-  padding:20px;
-  color:rgba(255,255,255,.62);
-  font-size:16px;
-}
-
-td{
-  padding:24px 20px;
-  color:rgba(255,255,255,.7);
-  border-top:1px solid rgba(255,255,255,.06);
-}
-
-.empty{
-  text-align:center;
-  margin-top:26px;
-  color:rgba(255,255,255,.65);
-  font-size:18px;
-}
-
-.empty a{
-  color:#d8b45d;
-  font-weight:800;
-}
-
-@media(max-width:900px){
-  .header{
-    padding:20px;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:18px;
-  }
-
-  .nav{
-    gap:16px;
-    font-size:14px;
-  }
-
-  .main{
-    padding:34px 20px;
-  }
-
-  h1{
-    font-size:34px;
-  }
-
-  .dashboard-grid{
-    grid-template-columns:1fr;
-  }
-
-  .stats{
-    grid-template-columns:1fr;
-  }
-
-  .card-ui-number{
-    font-size:18px;
-    letter-spacing:3px;
-  }
-
-  .profile-card p{
-    font-size:16px;
-  }
-}
-</style>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
-<header class="header">
-  <a href="index.html" class="logo">
-    <div class="logo-mark">⚡</div>
-    NEXPAY
+<header class="nav">
+  <a class="logo" href="index.html">
+    <div class="logo-icon">⚡</div>
+    <div><h2>NexPay</h2><p>Dashboard</p></div>
   </a>
 
-  <nav class="nav">
+  <nav class="desktop-nav">
     <a href="index.html">Home</a>
     <a href="virtual-cards.html">Virtual Cards</a>
-    <a href="physical-cards.html">Physical Cards</a>
-    <a href="api-access.html">API Access</a>
     <a href="pricing.html">Pricing</a>
-    <a href="faq.html">FAQ</a>
     <a href="contact.html">Contact</a>
-    <a href="pricing.html" class="add-card">+ Add Card</a>
-    <button class="logout" onclick="logout()">Log out</button>
   </nav>
+
+  <div class="nav-btns">
+    <a href="dashboard.html" class="login">Dashboard</a>
+    <a href="#" class="signup" id="logoutBtn">Sign out</a>
+  </div>
 </header>
 
-<main class="main">
-  <h1>Dashboard</h1>
-  <p class="welcome">Welcome back, <span id="userName">User</span></p>
+<main class="hero">
+  <section class="hero-left">
+    <div class="badge"><span></span> Account dashboard</div>
 
-  <section class="dashboard-grid">
-    <div class="card-ui">
-      <div class="card-ui-top">
-        <div>
-          <h2>NexPay</h2>
-          <p id="cardPlan">No Plan</p>
-        </div>
+    <h1>Welcome back, <br><strong id="userName">User</strong></h1>
+
+    <p>
+      Manage your NexPay account, selected plan, card status and transactions from one dashboard.
+    </p>
+  </section>
+
+  <section class="hero-right">
+    <div class="glow"></div>
+
+    <div class="card">
+      <div class="card-top">
+        <div><h2>NexPay</h2><p id="cardPlan">No Plan</p></div>
         <div class="chip"></div>
       </div>
 
-      <div class="card-ui-number">•••• 4582 9210</div>
+      <div class="card-number">•••• 4582 9210</div>
 
-      <div class="card-ui-bottom">
-        <div>
-          <small>Card Holder</small>
-          <h4 id="cardUser">USER NAME</h4>
-        </div>
-
-        <div style="text-align:right;">
-          <small>Status</small>
-          <h4 id="cardStatus" style="color:#ffcc66;">PENDING</h4>
-        </div>
+      <div class="card-bottom">
+        <div><small>Card Holder</small><h4 id="cardUser">USER</h4></div>
+        <div><small>Status</small><h4 class="active">ACTIVE</h4></div>
       </div>
     </div>
-
-    <div class="profile-card">
-      <h2>Profile Details</h2>
-      <p>Email: <span id="userEmail">Not available</span></p>
-      <p>Name: <span id="profileName">User</span></p>
-      <p>Selected Plan: <span class="gold" id="selectedPlan">No plan selected</span></p>
-      <p>Joined: <span id="joinedDate">--</span></p>
-    </div>
   </section>
-
-  <section class="stats">
-    <div class="stat-box">
-      <p>Available Balance</p>
-      <h3>$0.00</h3>
-    </div>
-
-    <div class="stat-box">
-      <p>This Month Spent</p>
-      <h3>$0.00</h3>
-    </div>
-
-    <div class="stat-box">
-      <p>Transactions</p>
-      <h3>0</h3>
-    </div>
-  </section>
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Transaction Status</th>
-          <th>Card Status</th>
-          <th>Amount Paid</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td colspan="6" style="text-align:center;">No transactions yet</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="empty">
-    No spending activity yet. <a href="pricing.html">Choose or update plan</a>
-  </div>
 </main>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const user = JSON.parse(localStorage.getItem("nexpay_user")) || {};
-  const selectedPlan = localStorage.getItem("selected_plan");
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+<section class="features">
+  <h2>Your Account</h2>
+  <p>Your verified NexPay profile details.</p>
 
-  if (isLoggedIn !== "true") {
+  <div class="feature-grid">
+    <div class="feature-card">
+      <i class="fa-solid fa-user"></i>
+      <h3>Profile</h3>
+      <p>Email: <span id="userEmail">Loading...</span></p>
+    </div>
+
+    <div class="feature-card">
+      <i class="fa-solid fa-credit-card"></i>
+      <h3>Selected Plan</h3>
+      <p id="selectedPlan">No plan selected</p>
+    </div>
+
+    <div class="feature-card">
+      <i class="fa-solid fa-receipt"></i>
+      <h3>Transactions</h3>
+      <p>No transactions yet.</p>
+    </div>
+  </div>
+</section>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDGwpH-JYuYK4kkUpf3cCsp-Im4urQW9Lk",
+  authDomain: "nexpay-crypto-card.firebaseapp.com",
+  projectId: "nexpay-crypto-card",
+  storageBucket: "nexpay-crypto-card.firebasestorage.app",
+  messagingSenderId: "120822872109",
+  appId: "1:120822872109:web:9079b4cf4f0cade9c620a4",
+  measurementId: "G-KQE5VRLX4F"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+  const loggedIn = localStorage.getItem("nexpay_logged_in") === "true";
+
+  if (!user || !user.emailVerified || !loggedIn) {
     window.location.href = "login.html";
     return;
   }
 
-  document.getElementById("userName").textContent = user.name || "User";
-  document.getElementById("profileName").textContent = user.name || "User";
-  document.getElementById("cardUser").textContent = (user.name || "User").toUpperCase();
-  document.getElementById("userEmail").textContent = user.email || "Not available";
+  const name = user.displayName || localStorage.getItem("nexpay_name") || "NexPay User";
+  const email = user.email || localStorage.getItem("nexpay_email") || "Not available";
+  const plan = localStorage.getItem("selected_plan") || "No plan selected";
 
-  if (selectedPlan) {
-    document.getElementById("selectedPlan").textContent = selectedPlan;
-    document.getElementById("cardPlan").textContent = selectedPlan;
-    document.getElementById("cardStatus").textContent = "ACTIVE";
-    document.getElementById("cardStatus").style.color = "#42e89b";
-  } else {
-    document.getElementById("selectedPlan").textContent = "No plan selected";
-    document.getElementById("cardPlan").textContent = "No Plan";
-    document.getElementById("cardStatus").textContent = "PENDING";
-  }
-
-  if (user.createdAt) {
-    document.getElementById("joinedDate").textContent = new Date(user.createdAt).toLocaleString();
-  } else {
-    document.getElementById("joinedDate").textContent = "--";
-  }
+  document.getElementById("userName").innerText = name;
+  document.getElementById("cardUser").innerText = name.toUpperCase();
+  document.getElementById("userEmail").innerText = email;
+  document.getElementById("selectedPlan").innerText = plan;
+  document.getElementById("cardPlan").innerText = plan;
 });
 
-function logout() {
-  localStorage.removeItem("isLoggedIn");
+document.getElementById("logoutBtn").addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  localStorage.removeItem("nexpay_logged_in");
+  localStorage.removeItem("nexpay_email");
+  localStorage.removeItem("nexpay_name");
+
+  await signOut(auth);
   window.location.href = "login.html";
-}
+});
 </script>
 
 </body>
