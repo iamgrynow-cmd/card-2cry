@@ -4,11 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>NexPay | Crypto Cards</title>
+
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 
 <body>
+
 <header class="nav">
   <a class="logo" href="index.html">
     <div class="logo-icon">⚡</div>
@@ -26,13 +28,14 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- ✅ IMPORTANT CHANGE -->
-  <div class="nav-btns" id="authButtons">
+  <div class="nav-btns">
     <a href="login.html" class="login">Log in</a>
     <a href="signup.html" class="signup">Sign up</a>
   </div>
 
-  <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+  <button class="menu-toggle" id="menuToggle">
+    <i class="fa-solid fa-bars"></i>
+  </button>
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -44,18 +47,15 @@
   <a href="pricing.html">Pricing</a>
   <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
-  <a href="developers.html">Developers</a>
-  <a href="docs.html">Docs</a>
-  <a href="security.html">Security</a>
   <a href="login.html">Log in</a>
   <a href="signup.html" class="mobile-signup">Sign up</a>
 </div>
 
 <main class="hero">
   <section class="hero-left">
-    <div class="badge"><span></span> Crypto funded cards for global spending</div>
+    <div class="badge">Crypto funded cards</div>
     <h1>Create a secure <br><strong>crypto card.</strong></h1>
-    <p>Fund your card with crypto, manage spending from one dashboard.</p>
+    <p>Premium virtual cards for global payments.</p>
 
     <div class="hero-actions">
       <a href="signup.html" class="primary-btn">Create Account</a>
@@ -66,18 +66,17 @@
   <section class="hero-right">
     <div class="card">
       <div class="card-top">
-        <div><h2>NexPay</h2><p>Elite Black</p></div>
+        <div><h2>NexPay</h2></div>
       </div>
-      <div class="card-number">•••• 8294 7710</div>
+      <div class="card-number">•••• 8294</div>
       <div class="card-bottom">
-        <div><small>Card Holder</small><h4 id="cardName">NEXPAY USER</h4></div>
+        <div><small>Card Holder</small><h4>NEXPAY USER</h4></div>
         <div><small>Status</small><h4 class="active">ACTIVE</h4></div>
       </div>
     </div>
   </section>
 </main>
 
-<!-- ✅ CHANGE: payment.html -->
 <section class="features">
   <h2>Choose Your Card</h2>
   <div class="feature-grid">
@@ -85,25 +84,35 @@
     <div class="feature-card">
       <h3>Visa Card</h3>
       <h2>$29</h2>
+      <p>Perfect for everyday use</p>
       <a href="payment.html" class="primary-btn">View Plans</a>
     </div>
 
     <div class="feature-card">
       <h3>Mastercard</h3>
       <h2>$59</h2>
+      <p>Premium features</p>
       <a href="payment.html" class="primary-btn">View Plans</a>
     </div>
 
   </div>
 </section>
 
+<footer class="luxury-footer">
+  <p>© 2026 NexPay</p>
+</footer>
+
+<!-- MOBILE MENU -->
 <script>
-const menuToggle=document.getElementById("menuToggle");
-const mobileMenu=document.getElementById("mobileMenu");
-menuToggle.addEventListener("click",()=>{mobileMenu.classList.toggle("active");});
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuToggle.addEventListener("click", () => {
+  mobileMenu.classList.toggle("active");
+});
 </script>
 
-<!-- 🔥 FIREBASE SCRIPT -->
+<!-- FIREBASE LOGIN NAVBAR -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
@@ -118,21 +127,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-onAuthStateChanged(auth, (user) => {
-  const box = document.getElementById("authButtons");
+const navBtns = document.querySelector(".nav-btns");
 
-  if(user && user.emailVerified){
-    box.innerHTML = `
-      <a href="dashboard.html" class="login">Dashboard</a>
-      <button id="logoutBtn" class="signup">Logout</button>
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    navBtns.innerHTML = `
+      <span style="color:#d8b45d;">${user.email}</span>
+      <a href="dashboard.html" class="signup">Dashboard</a>
+      <button id="logoutBtn" class="login">Logout</button>
     `;
 
-    let name = user.displayName || user.email.split("@")[0];
-    document.getElementById("cardName").innerText = name.toUpperCase();
-
-    document.getElementById("logoutBtn").onclick = async () => {
-      await signOut(auth);
-      location.reload();
+    document.getElementById("logoutBtn").onclick = () => {
+      signOut(auth).then(() => location.reload());
     };
   }
 });
