@@ -86,7 +86,11 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDGwpH-JYuYK4kkUpf3cCsp-Im4urQW9Lk",
@@ -101,10 +105,15 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-onAuthStateChanged(auth, (user) => {
-  const loggedIn = localStorage.getItem("nexpay_logged_in") === "true";
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
 
-  if (!user || !user.emailVerified || !loggedIn) {
+  await user.reload();
+
+  if (!user.emailVerified) {
     window.location.href = "login.html";
     return;
   }
@@ -112,6 +121,10 @@ onAuthStateChanged(auth, (user) => {
   const name = user.displayName || localStorage.getItem("nexpay_name") || "NexPay User";
   const email = user.email || localStorage.getItem("nexpay_email") || "Not available";
   const plan = localStorage.getItem("selected_plan") || "No plan selected";
+
+  localStorage.setItem("nexpay_logged_in", "true");
+  localStorage.setItem("nexpay_email", email);
+  localStorage.setItem("nexpay_name", name);
 
   document.getElementById("userName").innerText = name;
   document.getElementById("cardUser").innerText = name.toUpperCase();
