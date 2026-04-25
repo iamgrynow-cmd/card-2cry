@@ -12,15 +12,13 @@
 
 <main class="hero">
   <section class="hero-left">
-    <div class="badge"><span></span> Email verified</div>
+    <div class="badge"><span></span> Email verification</div>
 
-    <h1>Thank you for <br><strong>verifying your email.</strong></h1>
+    <h1>Verifying your <br><strong>email...</strong></h1>
 
-    <p>
-      Your email verification is complete. You can now login with your email and password.
-    </p>
+    <p id="verifyMsg">Please wait while we verify your NexPay account.</p>
 
-    <div class="hero-actions">
+    <div class="hero-actions" id="loginBox" style="display:none;">
       <a href="login.html" class="primary-btn">
         Go to Login <i class="fa-solid fa-arrow-right"></i>
       </a>
@@ -32,11 +30,59 @@
 
     <div class="feature-card" style="width:min(430px,100%);position:relative;z-index:2;text-align:center;">
       <i class="fa-solid fa-circle-check"></i>
-      <h3>Email Verified</h3>
-      <p>Your NexPay account is ready for login.</p>
+      <h3 id="verifyTitle">Checking...</h3>
+      <p id="verifySub">Your email verification is being processed.</p>
     </div>
   </section>
 </main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, applyActionCode } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDGwpH-JYuYK4kkUpf3cCsp-Im4urQW9Lk",
+  authDomain: "nexpay-crypto-card.firebaseapp.com",
+  projectId: "nexpay-crypto-card",
+  storageBucket: "nexpay-crypto-card.firebasestorage.app",
+  messagingSenderId: "120822872109",
+  appId: "1:120822872109:web:9079b4cf4f0cade9c620a4",
+  measurementId: "G-KQE5VRLX4F"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const params = new URLSearchParams(window.location.search);
+const mode = params.get("mode");
+const oobCode = params.get("oobCode");
+
+const verifyMsg = document.getElementById("verifyMsg");
+const verifyTitle = document.getElementById("verifyTitle");
+const verifySub = document.getElementById("verifySub");
+const loginBox = document.getElementById("loginBox");
+
+async function verifyEmail() {
+  try {
+    if (mode === "verifyEmail" && oobCode) {
+      await applyActionCode(auth, oobCode);
+    }
+
+    verifyTitle.innerText = "Email Verified";
+    verifySub.innerText = "Your NexPay account is ready for login.";
+    verifyMsg.innerText = "Thank you for verifying your email. You can now login with your email and password.";
+    loginBox.style.display = "flex";
+
+  } catch (error) {
+    verifyTitle.innerText = "Verification Failed";
+    verifySub.innerText = "This link may be expired or already used.";
+    verifyMsg.innerText = "Please try login. If it fails, signup again or request a new verification email.";
+    loginBox.style.display = "flex";
+  }
+}
+
+verifyEmail();
+</script>
 
 </body>
 </html>
